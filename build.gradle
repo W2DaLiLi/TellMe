@@ -5,6 +5,7 @@ buildscript {
         kotlin_version = '1.2.20'
         android_support_version = '26.1.0'
         gradle_version = '3.0.1'
+        objectbox_version = '1.4.0'
     }
 
     repositories {
@@ -18,7 +19,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'io.objectbox:objectbox-gradle-plugin:0.9.9'
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectbox_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

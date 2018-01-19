@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 
 android {
@@ -60,7 +61,10 @@ dependencies {
     // 仅支持 WebP 静态图，需要添加
     compile 'com.facebook.fresco:webpsupport:1.5.0'
     //database
-    compile 'io.objectbox:objectbox-android:0.9.9'
+    implementation "io.objectbox:objectbox-android:$objectbox_version"
+    implementation "io.objectbox:objectbox-kotlin:$objectbox_version"
+    kapt "io.objectbox:objectbox-processor:$objectbox_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
     mavenCentral()
