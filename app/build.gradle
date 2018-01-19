@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'io.objectbox'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.hzxr.tellme"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Android support library
+    compile "com.android.support:support-core-utils:$android_support_version"
+    compile "com.android.support:cardview-v7:$android_support_version"
+    compile "com.android.support:appcompat-v7:$android_support_version"
+    compile "com.android.support:recyclerview-v7:$android_support_version"
+    compile "com.android.support:gridlayout-v7:$android_support_version"
+    compile "com.android.support:design:$android_support_version"
+    compile "com.android.support:support-v4:$android_support_version"
+    compile "com.android.support:exifinterface:$android_support_version"
+    //OpenFire Smack api
+    compile 'org.igniterealtime.smack:smack-android-extensions:4.2.0'
+    compile 'org.igniterealtime.smack:smack-tcp:4.2.0'
+    //net library
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    //pic
+    compile 'com.facebook.fresco:fresco:1.5.0'
+    // 在 API < 14 上的机器支持 WebP 时，需要添加
+    compile 'com.facebook.fresco:animated-base-support:0.12.0'
+    // 支持 GIF 动图，需要添加
+    compile 'com.facebook.fresco:animated-gif:1.5.0'
+    // 支持 WebP （静态图+动图），需要添加
+    compile 'com.facebook.fresco:animated-webp:1.5.0'
+    compile 'com.facebook.fresco:webpsupport:1.5.0'
+    // 仅支持 WebP 静态图，需要添加
+    compile 'com.facebook.fresco:webpsupport:1.5.0'
+    //database
+    compile 'io.objectbox:objectbox-android:0.9.9'
+}
+repositories {
+    mavenCentral()
+    maven {
+        url "http://objectbox.net/beta-repo/"
+    }
+}
