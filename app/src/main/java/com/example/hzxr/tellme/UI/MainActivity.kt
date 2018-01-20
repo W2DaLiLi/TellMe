@@ -1,8 +1,9 @@
-package com.example.hzxr.tellme
+package com.example.hzxr.tellme.UI
 
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.UI.VM.MainViewModel
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
 
