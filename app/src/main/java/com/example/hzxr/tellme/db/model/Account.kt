@@ -2,7 +2,6 @@ package com.example.hzxr.tellme.db.model
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
-import io.objectbox.annotation.Relation
 import io.objectbox.relation.ToMany
 
 /**
