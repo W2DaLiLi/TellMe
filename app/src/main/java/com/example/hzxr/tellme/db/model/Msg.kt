@@ -13,6 +13,6 @@ data class Msg(
         var type: String,
         var to: String,
         var from: String,
-        var content: String,
+        var content: String? =null,
         var data: String
 )

@@ -15,5 +15,5 @@ data class Account(
         var email: String,
         var role: String,
 
-        var friends: ToMany<Member>
+        var friends: ToMany<Member>? = null
         )

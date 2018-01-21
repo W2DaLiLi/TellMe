@@ -10,6 +10,6 @@ import io.objectbox.annotation.Id
 data class Member(
         @Id
         var username: String,
-        var nickname: String,
+        var nickname: String? = null,
         var parentId: String
 )
