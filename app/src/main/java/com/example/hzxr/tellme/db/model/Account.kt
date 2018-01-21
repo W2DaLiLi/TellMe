@@ -10,8 +10,9 @@ import io.objectbox.relation.ToMany
 @Entity
 data class Account(
         @Id
+        var id: Long,
         var username: String,
-        var nickname: String,
+        var nickname: String? = null,
         var email: String,
         var role: String,
 

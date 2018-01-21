@@ -10,6 +10,7 @@ import io.objectbox.relation.ToMany
 @Entity
 data class Group (
         @Id
+        var id: Long,
         var name: String,
         var description: String? = null,
         var admin: String,

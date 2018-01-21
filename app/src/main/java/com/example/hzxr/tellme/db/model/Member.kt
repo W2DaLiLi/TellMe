@@ -9,6 +9,7 @@ import io.objectbox.annotation.Id
 @Entity
 data class Member(
         @Id
+        var id: Long,
         var username: String,
         var nickname: String? = null,
         var parentId: String

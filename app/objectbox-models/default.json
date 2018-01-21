@@ -4,35 +4,169 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:9176462075722518903",
-      "lastPropertyId": "3:2442852876338947422",
-      "name": "User",
+      "id": "2:5416227925175912161",
+      "lastPropertyId": "5:8975857731044077662",
+      "name": "Account",
       "properties": [
         {
-          "id": "1:2224763477240602574",
+          "id": "1:6225150922483990939",
           "name": "id"
         },
         {
-          "id": "2:8282030996749426071",
+          "id": "2:5183347506284908790",
           "name": "username"
         },
         {
-          "id": "3:2442852876338947422",
-          "name": "password"
+          "id": "3:4988602056533155003",
+          "name": "nickname"
+        },
+        {
+          "id": "4:3776356921166656604",
+          "name": "email"
+        },
+        {
+          "id": "5:8975857731044077662",
+          "name": "role"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:5989873797440451830",
+          "name": "friends"
+        }
+      ]
+    },
+    {
+      "id": "3:1184980677769724816",
+      "lastPropertyId": "4:7298650740491351229",
+      "name": "Group",
+      "properties": [
+        {
+          "id": "1:8081672488864864592",
+          "name": "id"
+        },
+        {
+          "id": "2:2102880430996553815",
+          "name": "name"
+        },
+        {
+          "id": "3:4620719679115692149",
+          "name": "description"
+        },
+        {
+          "id": "4:7298650740491351229",
+          "name": "admin"
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:2334558400965773056",
+          "name": "members"
+        }
+      ]
+    },
+    {
+      "id": "4:4467947529973543554",
+      "lastPropertyId": "4:573514125144894670",
+      "name": "Member",
+      "properties": [
+        {
+          "id": "1:7174100414761990664",
+          "name": "id"
+        },
+        {
+          "id": "2:6339799492861441568",
+          "name": "username"
+        },
+        {
+          "id": "3:1289211685516979846",
+          "name": "nickname"
+        },
+        {
+          "id": "4:573514125144894670",
+          "name": "parentId"
         }
       ],
       "relations": []
+    },
+    {
+      "id": "5:1846036375377061281",
+      "lastPropertyId": "6:5772067903873518677",
+      "name": "Msg",
+      "properties": [
+        {
+          "id": "1:2096618641741804388",
+          "name": "id"
+        },
+        {
+          "id": "2:7123577621566282254",
+          "name": "type"
+        },
+        {
+          "id": "3:4645204400946538456",
+          "name": "to"
+        },
+        {
+          "id": "4:3588367279788690531",
+          "name": "from"
+        },
+        {
+          "id": "5:5144561411241330248",
+          "name": "content"
+        },
+        {
+          "id": "6:5772067903873518677",
+          "name": "data"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:1890482838202699614",
+      "lastPropertyId": "4:6120053785834062279",
+      "name": "Session",
+      "properties": [
+        {
+          "id": "1:665235526173587125",
+          "name": "id"
+        },
+        {
+          "id": "2:7997236047786877034",
+          "name": "sessionName"
+        },
+        {
+          "id": "3:3497892934963591198",
+          "name": "updateData"
+        },
+        {
+          "id": "4:6120053785834062279",
+          "indexId": "1:6677251008929428283",
+          "name": "lastMsgId"
+        }
+      ],
+      "relations": [
+        {
+          "id": "3:8153668452837692852",
+          "name": "members"
+        }
+      ]
     }
   ],
-  "lastEntityId": "1:9176462075722518903",
-  "lastIndexId": "0:0",
-  "lastRelationId": "0:0",
+  "lastEntityId": "6:1890482838202699614",
+  "lastIndexId": "1:6677251008929428283",
+  "lastRelationId": "3:8153668452837692852",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    9176462075722518903
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    2224763477240602574,
+    8282030996749426071,
+    2442852876338947422
+  ],
   "retiredRelationUids": [],
   "version": 1
 }
