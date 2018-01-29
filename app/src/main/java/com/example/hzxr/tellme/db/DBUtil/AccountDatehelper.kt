@@ -21,11 +21,11 @@ object AccountDatehelper {
 
     fun delete(boxStore: BoxStore, username: String) {
         val accountBox = boxStore.boxFor(Account::class.java)
-        val account = queryAccountById(boxStore, username)?: return
+        val account = queryAccountByUsername(boxStore, username) ?: return
         accountBox.remove(account)
     }
 
-    private fun queryAccountById(boxStore: BoxStore, username: String): Account? {
+    private fun queryAccountByUsername(boxStore: BoxStore, username: String): Account? {
         val accountBox = boxStore.boxFor(Account::class.java)
         val result = accountBox.query().equal(Account_.username, username).build().findFirst()
         return result
