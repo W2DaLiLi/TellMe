@@ -11,7 +11,7 @@ import io.objectbox.relation.ToOne
 @Entity
 data class Session(
         @Id
-        var id: Long,
+        var id: Long = 0,
         var sessionName: String,
         var updateData: String,
         var lastMsg: ToOne<Msg>,

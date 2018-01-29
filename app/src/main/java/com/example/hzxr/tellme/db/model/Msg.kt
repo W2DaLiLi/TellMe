@@ -9,7 +9,7 @@ import io.objectbox.annotation.Id
 @Entity
 data class Msg(
         @Id
-        var id: Long,
+        var id: Long = 0,
         var type: String,
         var to: String,
         var from: String,
