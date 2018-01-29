@@ -32,12 +32,11 @@ object AccountDatehelper {
     }
 
     private fun mapToAccountObject(map: Map<String, Any>): Account {
-        val id = map.getValue("id") as Long
         val username = map.getValue("username") as String
         val nickname = map.getValue("nickname") as String?
         val email = map.getValue("email") as String
         val role = map.getValue("role") as String
         val friends = map.getValue("friends") as ToMany<Member>?
-        return Account(id, username, nickname, email, role, friends)
+        return Account(username = username, nickname = nickname, email = email, role = role, friends = friends)
     }
 }
