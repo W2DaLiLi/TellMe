@@ -7,4 +7,6 @@ import com.example.hzxr.tellme.databinding.ActivityLoginBinding
 /**
  * Created by Hzxr on 2018/1/20.
  */
-class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseViewModel<ActivityLoginBinding>(activity, binding)
+class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseViewModel<ActivityLoginBinding>(activity, binding) {
+    var 
+}
