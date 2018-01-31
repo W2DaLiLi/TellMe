@@ -3,32 +3,20 @@ package com.example.hzxr.tellme.net
 import android.content.Context
 import com.example.hzxr.tellme.TellMeApp
 import io.objectbox.BoxStore
+import org.jivesoftware.smack.tcp.XMPPTCPConnection
 
 /**
  * Created by Hzxr on 2018/1/20.
  */
-class EventHandler(context: Context) {
+object EventHandler {
 
-    private val connect = ConnectManager.getConnect()
-    private val boxStore = ((context.applicationContext) as TellMeApp).boxStore
+    fun handleUserLogin(boxStore: BoxStore, connect: XMPPTCPConnection) {}
 
-    fun handle(event: Event) {
-        when (event.type) {
-            EventType.USER_LOGIN -> handleUserLogin()
-            EventType.USER_LOGOUT -> handleUserLogout()
-            EventType.USER_REGISTER -> handleUserRegister()
-            EventType.SEND_MESSAGE -> handleSendMessage()
-            EventType.RECV_MESSAGE -> handleRecvMessage()
-        }
-    }
+    fun handleUserRegister(boxStore: BoxStore, connect: XMPPTCPConnection) {}
 
-    private fun handleUserLogin() {}
+    fun handleUserLogout(boxStore: BoxStore, connect: XMPPTCPConnection) {}
 
-    private fun handleUserRegister() {}
+    fun handleSendMessage(boxStore: BoxStore, connect: XMPPTCPConnection) {}
 
-    private fun handleUserLogout() {}
-
-    private fun handleSendMessage() {}
-
-    private fun handleRecvMessage() {}
+    fun handleRecvMessage(boxStore: BoxStore, connect: XMPPTCPConnection) {}
 }
