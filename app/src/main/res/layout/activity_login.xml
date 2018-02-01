@@ -35,14 +35,18 @@
             android:layout_marginTop="42dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@color/white"
+            bind:error="@{vm.usernameInputError}">
 
             <EditText
                 android:id="@+id/username_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_username"
-                android:text="@={vm.username}" />
+                android:text="@={vm.username}"
+                bind:addTextChangedListener="@{vm.usernameTextWatcher}"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -54,14 +58,19 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_ti">
+            app:layout_constraintTop_toBottomOf="@+id/username_ti"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@color/white"
+            bind:error="@{vm.passwordInputError}"
+            >
 
             <EditText
                 android:id="@+id/password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_password"
-                android:text="@={vm.password}" />
+                android:text="@={vm.password}"
+                bind:addTextChangedListener="@{vm.passwordTextWatcher}"/>
         </android.support.design.widget.TextInputLayout>
 
         <CheckBox

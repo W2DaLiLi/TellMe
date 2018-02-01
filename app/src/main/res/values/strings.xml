@@ -7,4 +7,6 @@
     <string name="login">Login</string>
     <string name="rememberPW">RememberPassWord</string>
     <string name="autoLogin">Auto-Login</string>
+    <string name="errorUsername">Error Username</string>
+    <string name="errorPassword">Error Password</string>
 </resources>
