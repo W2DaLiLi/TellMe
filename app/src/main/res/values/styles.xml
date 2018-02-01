@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/loginColorPrimary</item>
+        <item name="colorPrimaryDark">@color/loginColorPrimaryDark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
 </resources>

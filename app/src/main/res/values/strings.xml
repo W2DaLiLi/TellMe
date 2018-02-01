@@ -5,4 +5,6 @@
     <string name="login_username">UserName</string>
     <string name="login_password">PassWord</string>
     <string name="login">Login</string>
+    <string name="rememberPW">RememberPassWord</string>
+    <string name="autoLogin">Auto-Login</string>
 </resources>

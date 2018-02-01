@@ -22,4 +22,8 @@
     <color name="title">#363636</color>
     <color name="tbtitle">#FF0000</color>
     <color name="toolbar_bg">#FAFBFD</color>
+    <!--login color-->
+    <color name="loginColorPrimary">#ff5722</color>
+    <color name="loginColorPrimaryDark">#c41c00</color>
+    <color name="loginColorPrimaryLight">#ff8a50</color>
 </resources>
