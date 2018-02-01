@@ -16,4 +16,9 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
             Log.d("TAG", "test click button")
             ActivitysUtil.startActivityToLogin(activity)
         }
+
+    val testRegisterActivityOnClickListener: View.OnClickListener
+        get() = View.OnClickListener {
+            ActivitysUtil.startActivityToRegister(activity)
+        }
 }

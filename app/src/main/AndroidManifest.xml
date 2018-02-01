@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".UI.LoginActivity"
             android:theme="@style/LoginTheme"/>
+        <activity android:name=".UI.RegisterActivity"
+            android:theme="@style/LoginTheme"/>
     </application>
 
 </manifest>
