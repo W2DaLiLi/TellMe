@@ -16,5 +16,7 @@ data class Account(
         var email: String? = null,
         var role: String,
 
-        var friends: ToMany<Member>? = null
-        )
+        var friends: List<Member>? = null
+        ){
+        constructor() : this(0,"",null,null,"user", listOf())
+}

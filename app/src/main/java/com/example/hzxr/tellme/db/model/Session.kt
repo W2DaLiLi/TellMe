@@ -15,5 +15,5 @@ data class Session(
         var sessionName: String,
         var updateData: String,
         var lastMsg: ToOne<Msg>,
-        var members: ToMany<Member>
+        var members: List<Member>
 )

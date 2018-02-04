@@ -14,5 +14,5 @@ data class Group (
         var name: String,
         var description: String? = null,
         var admin: String,
-        var members : ToMany<Member>
+        var members : List<Member>
 )

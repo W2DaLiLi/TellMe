@@ -34,6 +34,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/test_login" />
 
+        <Button
+            android:id="@+id/test_debug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{vm.testDebugOnClickListener}"
+            android:text="@string/test_debug"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test_register" />
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>
