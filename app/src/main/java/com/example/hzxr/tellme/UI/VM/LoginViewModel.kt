@@ -1,7 +1,10 @@
 package com.example.hzxr.tellme.UI.VM
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.databinding.BaseObservable
+import android.os.Handler
+import android.os.Message
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -11,6 +14,8 @@ import android.widget.Toast
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityLoginBinding
+import com.example.hzxr.tellme.net.ConnectManager
+import org.jivesoftware.smack.XMPPException
 
 /**
  * Created by Hzxr on 2018/1/20.
@@ -57,5 +62,29 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     private fun login() {
         if (!checkValid()) return
         Log.d("TAG", "username:" + username + " password:" + password + " remember:" + rememberPW + " auto:" + autoLogin)
+        Thread {
+            try {
+                val connect = ConnectManager.getConnect() ?: return@Thread
+                connect.login(username, password)
+                handler.sendEmptyMessage(1)
+            } catch (e: XMPPException) {
+                Log.d("TAG", e.toString())
+                handler.sendEmptyMessage(2)
+            }
+        }.start()
+    }
+
+    @SuppressLint("HandlerLeak")
+    private val handler = object : Handler() {
+        override fun handleMessage(msg: Message?) {
+            when (msg?.what) {
+                1 -> {
+                    Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
+                }
+                2 -> {
+                    Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }

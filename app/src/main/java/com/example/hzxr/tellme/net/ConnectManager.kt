@@ -13,37 +13,38 @@ import java.util.logging.Logger
  */
 object ConnectManager {
 
-    private val SERVER_PORT = 5222
-    private val SERVER_HOST = "192.168.199.159"
-    private val SERVER_DOMAIN = "localhost"
+    private const val SERVER_PORT = 5222
+    private const val SERVER_HOST = "192.168.199.159"
+    private const val SERVER_DOMAIN = "localhost"
 
+    @Volatile
     private var connect: AbstractXMPPConnection? = null
 
     private fun initConnection() {
-        Thread {
-            try {
-                val config = XMPPTCPConnectionConfiguration.builder()
-                        .setXmppDomain(SERVER_DOMAIN)
-                        .setHost(SERVER_HOST)
-                        .setPort(SERVER_PORT)
-                        .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
-                        .build()
-                if (connect == null) {
-                    connect = XMPPTCPConnection(config)
-                }
-                connect?.connect()
-                Log.d("TAG","连接成功")
-            } catch (e: XMPPException) {
-                Log.d("TAG-Exception", e.toString())
+        Log.d("TAG", "initConnection")
+        try {
+            val config = XMPPTCPConnectionConfiguration.builder()
+                    .setXmppDomain(SERVER_DOMAIN)
+                    .setHost(SERVER_HOST)
+                    .setPort(SERVER_PORT)
+                    .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
+                    .build()
+            if (connect == null) {
+                connect = XMPPTCPConnection(config)
             }
+            connect?.connect()
+            Log.d("TAG", "连接成功")
+        } catch (e: XMPPException) {
+            Log.d("TAG-Exception", e.toString())
         }
     }
 
-    fun getConnect() : XMPPTCPConnection {
-        if (connect ==null) {
+    fun getConnect(): XMPPTCPConnection? {
+        Log.d("TAG", connect.toString())
+        if (connect == null) {
             initConnection()
         }
-        return connect as XMPPTCPConnection
+        return connect as XMPPTCPConnection?
     }
 
     fun disConnect() {
