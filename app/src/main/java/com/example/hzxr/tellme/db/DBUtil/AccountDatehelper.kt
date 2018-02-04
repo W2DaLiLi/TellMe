@@ -12,7 +12,7 @@ import io.objectbox.relation.ToMany
  */
 object AccountDatehelper {
 
-    fun add(boxStore: BoxStore, map: Map<String, Any>): Boolean {
+    fun add(boxStore: BoxStore, map: Map<String, Any?>): Boolean {
         if (map.isEmpty()) return false
         val accountBox = boxStore.boxFor(Account::class.java)
         accountBox.put(mapToAccountObject(map))
@@ -31,7 +31,7 @@ object AccountDatehelper {
         return result
     }
 
-    private fun mapToAccountObject(map: Map<String, Any>): Account {
+    private fun mapToAccountObject(map: Map<String, Any?>): Account {
         val username = map.getValue("username") as String
         val nickname = map.getValue("nickname") as String?
         val email = map.getValue("email") as String

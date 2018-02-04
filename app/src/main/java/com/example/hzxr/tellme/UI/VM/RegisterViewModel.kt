@@ -7,8 +7,11 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.example.hzxr.tellme.R
+import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityRegisterBinding
+import com.example.hzxr.tellme.db.DBUtil.AccountDatehelper
+import com.example.hzxr.tellme.db.model.Account
 import com.example.hzxr.tellme.net.ConnectManager
 import org.jivesoftware.smack.XMPPException
 import org.jivesoftware.smackx.iqregister.AccountManager
@@ -75,12 +78,24 @@ class RegisterViewModel(activity: Activity, binding: ActivityRegisterBinding) : 
                 val accountManager = AccountManager.getInstance(connect)
                 accountManager.sensitiveOperationOverInsecureConnection(true)
                 val localPart = Localpart.from(username)
-                val email = email?: return@Thread
+                val email = email ?: return@Thread
                 val map = mutableMapOf("email" to email)
                 accountManager.createAccount(localPart, password, map)
+                saveAccount()
             } catch (e: XMPPException) {
                 Log.d("TAG", e.toString())
             }
         }.start()
+    }
+//这里字段的判空设计的有点问题，后面要改进
+    private fun saveAccount() {
+        val data = mutableMapOf("username" to username!!,
+                "password" to password!!,
+                "email" to email!!,
+                "nickname" to null,
+                "role" to "user",
+                "friends" to null).toMap()
+        val box = (activity.application as TellMeApp).boxStore
+        AccountDatehelper.add(box, data)
     }
 }
