@@ -13,7 +13,7 @@ data class Account(
         var id: Long = 0,
         var username: String,
         var nickname: String? = null,
-        var email: String,
+        var email: String? = null,
         var role: String,
 
         var friends: ToMany<Member>? = null

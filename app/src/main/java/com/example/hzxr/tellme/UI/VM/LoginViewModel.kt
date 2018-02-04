@@ -80,6 +80,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
             when (msg?.what) {
                 1 -> {
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
+                    //todo:goto homeActivity
                 }
                 2 -> {
                     Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()

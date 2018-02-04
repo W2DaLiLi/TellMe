@@ -9,6 +9,10 @@ import android.view.View
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityRegisterBinding
+import com.example.hzxr.tellme.net.ConnectManager
+import org.jivesoftware.smack.XMPPException
+import org.jivesoftware.smackx.iqregister.AccountManager
+import org.jxmpp.jid.parts.Localpart
 
 /**
  * Created by Hzxr on 2018/2/1.
@@ -65,5 +69,18 @@ class RegisterViewModel(activity: Activity, binding: ActivityRegisterBinding) : 
     private fun register() {
         if (!checkValid()) return
         Log.d("TAG", "Register:" + username + password + email)
+        Thread {
+            try {
+                val connect = ConnectManager.getConnect() ?: return@Thread
+                val accountManager = AccountManager.getInstance(connect)
+                accountManager.sensitiveOperationOverInsecureConnection(true)
+                val localPart = Localpart.from(username)
+                val email = email?: return@Thread
+                val map = mutableMapOf("email" to email)
+                accountManager.createAccount(localPart, password, map)
+            } catch (e: XMPPException) {
+                Log.d("TAG", e.toString())
+            }
+        }.start()
     }
 }
