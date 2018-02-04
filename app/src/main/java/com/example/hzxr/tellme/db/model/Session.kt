@@ -14,6 +14,8 @@ data class Session(
         var id: Long = 0,
         var sessionName: String,
         var updateData: String,
-        var lastMsg: ToOne<Msg>,
-        var members: List<Member>
-)
+        var lastMsg: ToOne<Msg>? = null,
+        var members: List<Member>? = null
+) {
+        constructor() : this(0, "", "", null, listOf())
+}

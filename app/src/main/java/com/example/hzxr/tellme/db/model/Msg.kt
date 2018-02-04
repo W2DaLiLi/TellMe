@@ -13,6 +13,8 @@ data class Msg(
         var type: String,
         var to: String,
         var from: String,
-        var content: String? =null,
+        var content: String? = null,
         var data: String
-)
+) {
+    constructor() : this(0, "", "", "", null, "")
+}

@@ -140,7 +140,7 @@
         },
         {
           "id": "4:6120053785834062279",
-          "indexId": "1:6677251008929428283",
+          "indexId": "2:1306896458281535406",
           "name": "lastMsgId"
         }
       ],
@@ -153,7 +153,7 @@
     }
   ],
   "lastEntityId": "6:1890482838202699614",
-  "lastIndexId": "1:6677251008929428283",
+  "lastIndexId": "2:1306896458281535406",
   "lastRelationId": "3:8153668452837692852",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
@@ -161,7 +161,9 @@
   "retiredEntityUids": [
     9176462075722518903
   ],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    6677251008929428283
+  ],
   "retiredPropertyUids": [
     2224763477240602574,
     8282030996749426071,

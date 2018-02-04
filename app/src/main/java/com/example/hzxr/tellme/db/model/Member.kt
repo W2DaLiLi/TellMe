@@ -13,4 +13,6 @@ data class Member(
         var username: String,
         var nickname: String? = null,
         var parentId: String
-)
+) {
+        constructor() : this(0, "", null, "")
+}
