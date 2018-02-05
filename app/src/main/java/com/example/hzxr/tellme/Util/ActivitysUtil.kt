@@ -2,6 +2,7 @@ package com.example.hzxr.tellme.Util
 
 import android.content.Context
 import android.content.Intent
+import com.example.hzxr.tellme.UI.HomeActivity
 import com.example.hzxr.tellme.UI.LoginActivity
 import com.example.hzxr.tellme.UI.RegisterActivity
 
@@ -17,6 +18,11 @@ object ActivitysUtil {
 
     fun startActivityToRegister(context: Context) {
         val intent = Intent(context, RegisterActivity::class.java)
+        context.startActivity(intent)
+    }
+
+    fun startActivityToHome(context: Context) {
+        val intent = Intent(context, HomeActivity::class.java)
         context.startActivity(intent)
     }
 }

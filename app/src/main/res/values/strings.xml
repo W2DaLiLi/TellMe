@@ -4,6 +4,7 @@
     <string name="test_login">Test Login</string>
     <string name="test_register">Test Register</string>
     <string name="test_debug">Test Debug</string>
+    <string name="test_home">Test Home</string>
     <string name="username">UserName</string>
     <string name="password">PassWord</string>
     <string name="email">E-mail</string>

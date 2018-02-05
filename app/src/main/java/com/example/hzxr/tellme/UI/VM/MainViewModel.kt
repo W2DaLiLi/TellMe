@@ -27,7 +27,12 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
             val box = (activity.application as TellMeApp).boxStore
-            val account = AccountDatehelper.queryAccountByUsername(box,"000")
+            val account = AccountDatehelper.queryAccountByUsername(box, "000")
             Log.d("TAG", account.toString())
+        }
+
+    val testHomeOnClickListener: View.OnClickListener
+        get() = View.OnClickListener {
+            ActivitysUtil.startActivityToHome(activity)
         }
 }
