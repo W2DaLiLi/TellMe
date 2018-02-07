@@ -10,8 +10,8 @@ import android.support.v4.app.Fragment
 open class BaseFragment : Fragment() {
     protected lateinit var activity: Activity
 
-    override fun onAttach(activity: Activity?) {
-        super.onAttach(activity)
-        this.activity = activity ?: return
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        activity = context as Activity
     }
 }
