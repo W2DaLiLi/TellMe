@@ -1,4 +1,4 @@
-package com.example.hzxr.tellme.UI.VM
+package com.example.hzxr.tellme.ui.VM
 
 import android.app.Activity
 import android.text.Editable
@@ -11,7 +11,6 @@ import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityRegisterBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDatehelper
-import com.example.hzxr.tellme.db.model.Account
 import com.example.hzxr.tellme.net.ConnectManager
 import org.jivesoftware.smack.XMPPException
 import org.jivesoftware.smackx.iqregister.AccountManager

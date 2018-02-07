@@ -1,7 +1,6 @@
-package com.example.hzxr.tellme.UI.VM
+package com.example.hzxr.tellme.ui.VM
 
 import android.app.Activity
-import android.content.Context
 import com.example.hzxr.tellme.databinding.FragmentSessionBinding
 
 /**

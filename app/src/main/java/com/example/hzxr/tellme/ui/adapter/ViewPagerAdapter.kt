@@ -1,4 +1,4 @@
-package com.example.hzxr.tellme.UI.adapter
+package com.example.hzxr.tellme.ui.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

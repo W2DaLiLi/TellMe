@@ -1,4 +1,4 @@
-package com.example.hzxr.tellme.UI
+package com.example.hzxr.tellme.ui
 
 import android.app.Activity
 import android.content.Context

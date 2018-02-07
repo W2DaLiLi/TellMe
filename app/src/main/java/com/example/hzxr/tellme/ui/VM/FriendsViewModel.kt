@@ -1,4 +1,4 @@
-package com.example.hzxr.tellme.UI.VM
+package com.example.hzxr.tellme.ui.VM
 
 import android.app.Activity
 import com.example.hzxr.tellme.databinding.FragmentFriendsBinding

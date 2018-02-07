@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.hzxr.tellme.UI.MainActivity">
+    tools:context="com.example.hzxr.tellme.ui.MainActivity">
 
     <data>
         <variable
             name="vm"
-            type="com.example.hzxr.tellme.UI.VM.MainViewModel"/>
+            type="com.example.hzxr.tellme.ui.VM.MainViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

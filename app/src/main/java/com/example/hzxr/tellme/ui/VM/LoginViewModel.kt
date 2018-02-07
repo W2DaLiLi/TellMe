@@ -1,8 +1,7 @@
-package com.example.hzxr.tellme.UI.VM
+package com.example.hzxr.tellme.ui.VM
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.databinding.BaseObservable
 import android.os.Handler
 import android.os.Message
 import android.text.Editable

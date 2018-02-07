@@ -1,10 +1,10 @@
-package com.example.hzxr.tellme.UI
+package com.example.hzxr.tellme.ui
 
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.hzxr.tellme.R
-import com.example.hzxr.tellme.UI.VM.MainViewModel
+import com.example.hzxr.tellme.ui.VM.MainViewModel
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

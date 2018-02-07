@@ -1,4 +1,4 @@
-package com.example.hzxr.tellme.UI
+package com.example.hzxr.tellme.ui
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import com.example.hzxr.tellme.R
-import com.example.hzxr.tellme.UI.VM.HomeViewModel
-import com.example.hzxr.tellme.UI.adapter.ViewPagerAdapter
+import com.example.hzxr.tellme.ui.VM.HomeViewModel
+import com.example.hzxr.tellme.ui.adapter.ViewPagerAdapter
 import com.example.hzxr.tellme.databinding.ActivityHomeBinding
 
 /**

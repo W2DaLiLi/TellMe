@@ -4,7 +4,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.hzxr.tellme.UI.VM.FriendsViewModel"/>
+            type="com.example.hzxr.tellme.ui.VM.FriendsViewModel"/>
     </data>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
