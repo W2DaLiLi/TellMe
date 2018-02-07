@@ -21,7 +21,10 @@ class HomeActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
         val viewModel = HomeViewModel(this, binding)
         binding.vm = viewModel
+        initView(binding)
+    }
 
+    private fun initView(binding: ActivityHomeBinding) {
         val list = listOf<Fragment>(SessionFragment(), FriendsFragment())
         val titles = listOf("Session", "Friends")
         val adapter = ViewPagerAdapter(list, titles, supportFragmentManager)
