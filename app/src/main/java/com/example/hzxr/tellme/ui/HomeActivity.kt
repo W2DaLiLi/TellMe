@@ -3,7 +3,9 @@ package com.example.hzxr.tellme.ui
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.WindowManager
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.ui.VM.HomeViewModel
@@ -19,6 +21,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
+        setSupportActionBar(binding.toolbar)
         val viewModel = HomeViewModel(this, binding)
         binding.vm = viewModel
         initView(binding)
@@ -30,5 +33,10 @@ class HomeActivity : AppCompatActivity() {
         val adapter = ViewPagerAdapter(list, titles, supportFragmentManager)
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return true
     }
 }

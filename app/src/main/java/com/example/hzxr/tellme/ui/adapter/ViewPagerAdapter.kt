@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter
 /**
  * Created by Hzxr on 2018/2/5.
  */
-class ViewPagerAdapter(private val fragments: List<Fragment>, private val titles: List<String>, fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class ViewPagerAdapter(private val fragments: List<Fragment>,
+                       private val titles: List<String>,
+                       fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
 
     override fun getCount(): Int {
