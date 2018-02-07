@@ -25,5 +25,7 @@ class HomeActivity : AppCompatActivity() {
         val list = listOf<Fragment>(SessionFragment(), FriendsFragment())
         val titles = listOf("Session", "Friends")
         val adapter = ViewPagerAdapter(list, titles, supportFragmentManager)
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 }
