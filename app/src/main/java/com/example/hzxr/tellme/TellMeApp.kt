@@ -2,6 +2,7 @@ package com.example.hzxr.tellme
 
 import android.app.Application
 import com.example.hzxr.tellme.db.model.MyObjectBox
+import com.facebook.drawee.backends.pipeline.Fresco
 import io.objectbox.BoxStore
 
 /**
@@ -15,6 +16,7 @@ class TellMeApp : Application() {
     override fun onCreate() {
         super.onCreate()
         boxStore = MyObjectBox.builder().androidContext(this).build()
+        Fresco.initialize(this)
     }
 
 }
