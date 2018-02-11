@@ -59,6 +59,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/view_nav_header"
-            app:menu="@menu/menu_nav" />
+            app:menu="@menu/menu_nav"/>
+            <!--bind:onNavigationItemSelectedListener="@{vm.onNavigationItemSelectedListener}"/>-->
     </android.support.v4.widget.DrawerLayout>
 </layout>
