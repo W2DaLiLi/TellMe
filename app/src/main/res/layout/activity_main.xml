@@ -54,6 +54,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/test_home" />
 
+        <Button
+            android:id="@+id/test_add_friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{vm.testAddFriendOnClickListener}"
+            android:text="@string/test_add_friend"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test_debug" />
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>

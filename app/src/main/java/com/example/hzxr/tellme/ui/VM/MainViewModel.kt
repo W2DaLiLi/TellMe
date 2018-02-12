@@ -35,4 +35,9 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
         get() = View.OnClickListener {
             ActivitysUtil.startActivityToHome(activity)
         }
+
+    val testAddFriendOnClickListener: View.OnClickListener
+        get() = View.OnClickListener {
+            ActivitysUtil.startActivityToAddFriend(activity)
+        }
 }
