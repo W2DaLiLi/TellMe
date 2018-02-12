@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:title="@string/home"
-                    app:popupTheme="@style/HomeActivity"
+                    app:popupTheme="@style/ToolbarPopTheme"
                     app:menu="@{R.menu.menu_home}"
                     bind:onMenuItemClickListener="@{vm.onMenuItemClickListener}">
                 </android.support.v7.widget.Toolbar>

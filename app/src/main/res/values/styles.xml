@@ -19,4 +19,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ToolbarPopTheme" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+    </style>
+
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+    </style>
 </resources>
