@@ -25,6 +25,7 @@
             android:theme="@style/LoginTheme"/>
         <activity android:name=".ui.HomeActivity"
             android:theme="@style/HomeActivity"/>
+        <activity android:name=".ui.AddFriendActivity"/>
     </application>
 
 </manifest>

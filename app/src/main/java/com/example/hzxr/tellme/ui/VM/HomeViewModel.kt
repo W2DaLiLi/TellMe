@@ -30,8 +30,8 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
 
     val onMenuItemClickListener: Toolbar.OnMenuItemClickListener
         get() = Toolbar.OnMenuItemClickListener { item ->
-            if (item.itemId == R.id.action_settings) {
-                Log.d("TAG", "test setting button")
+            if (item.itemId == R.id.action_add_friend) {
+                Log.d("TAG", "action add friend")
             }
             true
         }
