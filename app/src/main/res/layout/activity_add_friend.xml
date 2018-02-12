@@ -51,9 +51,19 @@
             <EditText
                 android:id="@+id/search_et"
                 android:hint="@string/search_friend"
+                android:text="@{vm.searchText}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                bind:addTextChangedListener="@{vm.searchTextWatcher}"/>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/jet"
+            app:layout_constraintBottom_toTopOf="@+id/search_result_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/search_result_rv"
@@ -62,7 +72,8 @@
             android:layout_marginTop="160dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:adapter="@{vm.adapter}"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
