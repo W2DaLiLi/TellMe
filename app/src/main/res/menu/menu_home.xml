@@ -7,5 +7,13 @@
         android:id="@+id/action_settings"
         android:icon="@mipmap/icon_settings"
         android:title="@string/settings"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_add_friend"
+                android:icon="@mipmap/icon_add_friend"
+                android:title="@string/add_friend"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
 </menu>

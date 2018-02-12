@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:title="@string/mine">
-        <item
-            android:id="@+id/navigation_profile"
-            android:icon="@mipmap/icon_user_profile"
-            android:title="@string/user_profile" />
-    </group>
-    <group android:title="@string/settings">
-        <item
-            android:id="@+id/navigation_settings"
-            android:icon="@mipmap/icon_settings"
-            android:title="@string/settings"/>
-    </group>
+    <item android:title="@string/mine">
+        <menu>
+            <item
+                android:id="@+id/navigation_profile"
+                android:icon="@mipmap/icon_user_profile"
+                android:title="@string/user_profile" />
+        </menu>
+    </item>
+    <item android:title="@string/settings">
+        <menu>
+            <item
+                android:id="@+id/navigation_settings"
+                android:icon="@mipmap/icon_settings"
+                android:title="@string/settings"/>
+        </menu>
+    </item>
 
 </menu>
