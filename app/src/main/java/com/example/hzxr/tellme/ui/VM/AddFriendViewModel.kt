@@ -18,7 +18,7 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
 
     var searchText: String? = null
 
-    val adapter = UserRecyclerAdapter(activity, arrayListOf("123", "2356", "5345"))
+    val adapter = UserRecyclerAdapter(activity, arrayListOf("搜索", "2356", "5345"))
 
     val navigationOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
