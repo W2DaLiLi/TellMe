@@ -8,20 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.hzxr.tellme.R
+import com.example.hzxr.tellme.net.model.User
 
 /**
  * Created by Hzxr on 2018/2/12.
  */
-class UserRecyclerAdapter(private val context: Context, private val userList: ArrayList<String>): RecyclerView.Adapter<UserRecyclerAdapter.UserViewHolder>() {
+class UserRecyclerAdapter(private val context: Context): RecyclerView.Adapter<UserRecyclerAdapter.UserViewHolder>() {
 
     var onItemClickListener: ((position: Int) -> Unit)? = null
+
+    var userList: List<User> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): UserViewHolder {
         return UserViewHolder(LayoutInflater.from(context).inflate(R.layout.item_user, parent, false))
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(userList[position])
+        holder.bind(userList[position].username)
         holder.itemView.setOnClickListener {
             onItemClickListener?.invoke(position)
         }

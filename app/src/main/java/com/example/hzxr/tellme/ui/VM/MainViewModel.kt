@@ -46,9 +46,7 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object :Observer<Users> {
-                        override fun onComplete() {
-
-                        }
+                        override fun onComplete() {}
 
                         override fun onNext(users: Users) {
                             for (item in users.userList)
@@ -59,8 +57,7 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
                             e.printStackTrace()
                         }
 
-                        override fun onSubscribe(d: Disposable) {
-                        }
+                        override fun onSubscribe(d: Disposable) {}
                     })
 //            val result = retrofit?.create(ApiService::class.java)
 //            val allUsers = result?.getAllUser()?: return@OnClickListener
