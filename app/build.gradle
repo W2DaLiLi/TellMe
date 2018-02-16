@@ -58,6 +58,8 @@ dependencies {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
     //pic
     compile 'com.facebook.fresco:fresco:1.5.0'
     // 在 API < 14 上的机器支持 WebP 时，需要添加

@@ -8,6 +8,13 @@ import com.example.hzxr.tellme.databinding.ActivityMainBinding
 import com.example.hzxr.tellme.net.RetrofitManager
 import com.example.hzxr.tellme.net.ApiService
 import com.example.hzxr.tellme.net.model.Users
+import io.objectbox.android.AndroidScheduler
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,19 +40,43 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 //            val box = (activity.application as TellMeApp).boxStore
 //            val account = AccountDatehelper.queryAccountByUsername(box, "000")
 //            Log.d("TAG", account.toString())
-            val retrofit = RetrofitManager.getInstance()
-            val result = retrofit?.create(ApiService::class.java)
-            val allUsers = result?.getAllUser()?: return@OnClickListener
-            allUsers.enqueue(object :Callback<Users>{
-                override fun onResponse(call: Call<Users>?, response: Response<Users>?) {
-                    Log.d("TAG", "success: " + response?.body())
-                }
+            val retrofit = RetrofitManager.getInstance()?: return@OnClickListener
+            val service = retrofit.create(ApiService::class.java)
+            val observable = service.getAllUser()
+            observable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object :Observer<Users> {
+                        override fun onComplete() {
 
-                override fun onFailure(call: Call<Users>?, t: Throwable?) {
-                    Log.d("TAG", "false: " + t.toString())
-                    t?.printStackTrace()
-                }
-            })
+                        }
+
+                        override fun onNext(users: Users) {
+                            for (item in users.userList)
+                                Log.d("TAG", "Username: " + item.username)
+                        }
+
+                        override fun onError(e: Throwable) {
+                            e.printStackTrace()
+                        }
+
+                        override fun onSubscribe(d: Disposable) {
+                        }
+                    })
+//            val result = retrofit?.create(ApiService::class.java)
+//            val allUsers = result?.getAllUser()?: return@OnClickListener
+//            allUsers.enqueue(object :Callback<Users>{
+//                override fun onResponse(call: Call<Users>?, response: Response<Users>?) {
+//                    Log.d("TAG", "success: " )
+//                    val users = response?.body()?.getUserList()?: return
+//                    for (item in users)
+//                        Log.d("TAG", item.getUsername())
+//                }
+//
+//                override fun onFailure(call: Call<Users>?, t: Throwable?) {
+//                    Log.d("TAG", "false: " + t.toString())
+//                    t?.printStackTrace()
+//                }
+//            })
         }
 
     val testHomeOnClickListener: View.OnClickListener

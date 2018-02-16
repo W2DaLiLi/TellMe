@@ -2,6 +2,7 @@ package com.example.hzxr.tellme.net
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 
 /**
@@ -37,6 +38,7 @@ object RetrofitManager {
 
         return  Retrofit.Builder().baseUrl(BASEURL)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//支持Rxjava
                 .client(httpClient.build())
                 .build()
     }
