@@ -1,6 +1,5 @@
 package com.example.hzxr.tellme.net
 
-import com.example.hzxr.tellme.db.model.Account
 import com.example.hzxr.tellme.net.model.Users
 import retrofit2.Call
 import retrofit2.http.GET

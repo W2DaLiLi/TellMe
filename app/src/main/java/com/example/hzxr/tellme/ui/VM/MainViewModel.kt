@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
-import com.example.hzxr.tellme.db.model.Account
 import com.example.hzxr.tellme.net.RetrofitManager
 import com.example.hzxr.tellme.net.ApiService
 import com.example.hzxr.tellme.net.model.Users
