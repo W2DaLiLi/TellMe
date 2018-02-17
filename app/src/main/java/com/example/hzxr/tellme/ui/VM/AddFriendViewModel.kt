@@ -34,27 +34,24 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
             override fun afterTextChanged(editable: Editable?) {
                 //TODO:update recyclerview
                 Log.d("TAG", editable.toString())
-//                val key = editable.toString()
-//                userList?.filter { user ->
-//                    user.username.contains(key)
-//                }
-//                adapter.notifyDataSetChanged()
+                val key = editable.toString()
+                val list = userList?.filter { user ->
+                    user.username.contains(key)
+                }
+                adapter.userList = list?: return
+                adapter.notifyDataSetChanged()
                 Log.d("TAG", userList.toString())
             }
         }
 
     init {
-        ApiClient.getAllUserInServer()
-        ApiClient.listener = {
-            list ->
-            adapter.userList = list
-            adapter.notifyDataSetChanged()
+        ApiClient.getAllUserInServer()?.subscribe { users ->
+            adapter.userList = users.getUserList()
+            userList = users.getUserList()
         }
         binding.searchResultRv.layoutManager = LinearLayoutManager(activity)
         Log.d("TAG", userList.toString())
-        adapter.userList = userList?: listOf()
-        adapter.onItemClickListener = {
-            position ->
+        adapter.onItemClickListener = { position ->
             Log.d("TAG", "the position: " + position)
         }
     }

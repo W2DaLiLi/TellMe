@@ -59,21 +59,6 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 
                         override fun onSubscribe(d: Disposable) {}
                     })
-//            val result = retrofit?.create(ApiService::class.java)
-//            val allUsers = result?.getAllUser()?: return@OnClickListener
-//            allUsers.enqueue(object :Callback<Users>{
-//                override fun onResponse(call: Call<Users>?, response: Response<Users>?) {
-//                    Log.d("TAG", "success: " )
-//                    val users = response?.body()?.getUserList()?: return
-//                    for (item in users)
-//                        Log.d("TAG", item.getUsername())
-//                }
-//
-//                override fun onFailure(call: Call<Users>?, t: Throwable?) {
-//                    Log.d("TAG", "false: " + t.toString())
-//                    t?.printStackTrace()
-//                }
-//            })
         }
 
     val testHomeOnClickListener: View.OnClickListener
