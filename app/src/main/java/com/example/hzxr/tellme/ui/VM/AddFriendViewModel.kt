@@ -51,6 +51,7 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
         }
         binding.searchResultRv.layoutManager = LinearLayoutManager(activity)
         Log.d("TAG", userList.toString())
+        //这里这样拿值感觉会重复引用有问题，标注一下
         adapter.onItemClickListener = { position ->
             val list = adapter.userList
             val name = list[position]
