@@ -52,7 +52,9 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
         binding.searchResultRv.layoutManager = LinearLayoutManager(activity)
         Log.d("TAG", userList.toString())
         adapter.onItemClickListener = { position ->
-            Log.d("TAG", "the position: " + position)
+            val list = adapter.userList
+            val name = list[position]
+            Log.d("TAG", "the name: " + name.username)
         }
     }
 }
