@@ -100,6 +100,7 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
                 1 -> ToastUtil.showShort(activity, "添加成功")
                 2 -> ToastUtil.showShort(activity, "添加失败")
             }
+            activity.finish()
         }
     }
 }
