@@ -1,6 +1,8 @@
 package com.example.hzxr.tellme.ui.VM
 
 import android.app.Activity
+import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,8 +11,12 @@ import android.view.View
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityAddFriendBinding
 import com.example.hzxr.tellme.net.ApiClient
+import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.net.model.User
 import com.example.hzxr.tellme.ui.adapter.UserRecyclerAdapter
+import org.jivesoftware.smack.roster.Roster
+import org.jxmpp.jid.BareJid
+import org.jxmpp.jid.impl.JidCreate
 import kotlin.math.log
 
 /**
@@ -38,7 +44,7 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
                 val list = userList?.filter { user ->
                     user.username.contains(key)
                 }
-                adapter.userList = list?: return
+                adapter.userList = list ?: return
                 adapter.notifyDataSetChanged()
                 Log.d("TAG", userList.toString())
             }
@@ -53,9 +59,26 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
         Log.d("TAG", userList.toString())
         //这里这样拿值感觉会重复引用有问题，标注一下
         adapter.onItemClickListener = { position ->
+            //todo:alterDialog
             val list = adapter.userList
-            val name = list[position]
-            Log.d("TAG", "the name: " + name.username)
+            val name = list[position].username
+            AlertDialog.Builder(activity).setTitle("好友添加提示")
+                    .setMessage("是否添加 " + name + "为好友？")
+                    .setPositiveButton("确定", { _,_ ->
+                        submitAddFirend(name)
+                    })
+                    .setNegativeButton("取消", null)
+                    .create()
+                    .show()
+        }
+    }
+
+    private fun submitAddFirend(name: String) {
+        Log.d("TAG", "the name: " + name)
+        Thread {
+            val roster = Roster.getInstanceFor(ConnectManager.getConnect())
+            val jid = JidCreate.bareFrom(name + "@localhost")
+            roster.createEntry(jid, name, arrayOf("friend"))
         }
     }
 }
