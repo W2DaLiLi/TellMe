@@ -55,7 +55,7 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
     }
 
     init {
-        val filter = AndFilter(StanzaTypeFilter(Presence::class.java))
+        val filter = AndFilter(StanzaTypeFilter(Presence::class.java))//登陆后生效，未登录状态会抛出XmppException
         ConnectManager.getConnect()?.addAsyncStanzaListener(packetListener, filter)
         binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
