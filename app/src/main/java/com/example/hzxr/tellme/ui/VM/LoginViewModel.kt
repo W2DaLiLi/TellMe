@@ -2,6 +2,7 @@ package com.example.hzxr.tellme.ui.VM
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Handler
 import android.os.Message
 import android.text.Editable
@@ -14,6 +15,7 @@ import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityLoginBinding
 import com.example.hzxr.tellme.net.ConnectManager
+import com.example.hzxr.tellme.service.EventService
 import org.jivesoftware.smack.XMPPException
 
 /**
@@ -80,6 +82,8 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                 1 -> {
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
                     //todo:goto homeActivity
+                    val intent = Intent(activity, EventService::class.java)
+                    activity.startService(intent)
                 }
                 2 -> {
                     Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()

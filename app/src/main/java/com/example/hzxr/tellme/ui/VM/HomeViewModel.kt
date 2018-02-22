@@ -28,35 +28,8 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
             true
         }
 //所有的这些事件的监听不应该放在主界面里，因为，即使主界面销毁，应用依然需要监听这些事件的发生，所以应该把这些监听放在一个服务内，在成功登陆后开始。暂时放在主界面测试
-    private val packetListener = StanzaListener { packet ->
-        if (packet is Presence) {
-            val fromId = packet.from
-            when (packet.type) {
-                Presence.Type.subscribe -> {
-                    //我好友申请
-                }
-                Presence.Type.subscribed -> {
-                    //对方同意订阅
-                }
-                Presence.Type.unsubscribed -> {
-                    //对方拒绝订阅
-                }
-                Presence.Type.unsubscribe -> {
-                    //我取消订阅
-                }
-                Presence.Type.unavailable -> {
-                    //离线
-                }
-                Presence.Type.available -> {
-                    //上线
-                }
-            }
-        }
-    }
 
     init {
-        val filter = AndFilter(StanzaTypeFilter(Presence::class.java))//登陆后生效，未登录状态会抛出XmppException
-        ConnectManager.getConnect()?.addAsyncStanzaListener(packetListener, filter)
         binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_profile -> {
