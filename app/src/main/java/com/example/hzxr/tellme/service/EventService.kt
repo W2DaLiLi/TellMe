@@ -55,11 +55,11 @@ class EventService : Service() {
                 }
                 Presence.Type.unavailable -> {
                     //离线
-                    Log.d("TAG", "离线")
+                    Log.d("TAG", fromId.toString() + "离线")
                 }
                 Presence.Type.available -> {
                     //上线
-                    Log.d("TAG", "上线")
+                    Log.d("TAG", fromId.toString() + "上线")
                 }
                 else -> throw RuntimeException("receive unknown packet")
             }

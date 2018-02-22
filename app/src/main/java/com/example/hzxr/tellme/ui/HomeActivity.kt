@@ -23,7 +23,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
-        val viewModel = HomeViewModel(this, binding)
+        val username = intent.getStringExtra("username")?: return
+        val viewModel = HomeViewModel(this, binding, username)
         binding.vm = viewModel
         initView(binding)
     }

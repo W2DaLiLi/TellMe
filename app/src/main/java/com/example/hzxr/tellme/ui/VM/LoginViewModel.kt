@@ -12,10 +12,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.hzxr.tellme.R
+import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityLoginBinding
 import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.service.EventService
+import com.example.hzxr.tellme.ui.HomeActivity
 import org.jivesoftware.smack.XMPPException
 
 /**
@@ -82,13 +84,24 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                 1 -> {
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
                     //todo:goto homeActivity
-                    val intent = Intent(activity, EventService::class.java)
-                    activity.startService(intent)
+                    startEventService()
+                    startHomeActivityWithData(username?: return)
                 }
                 2 -> {
                     Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+    }
+
+    private fun startEventService() {
+        val intent = Intent(activity, EventService::class.java)
+        activity.startService(intent)
+    }
+
+    private fun startHomeActivityWithData(username: String) {
+        val intent = Intent(activity, HomeActivity::class.java)
+        intent.putExtra("username", username)
+        activity.startActivity(intent)
     }
 }

@@ -18,7 +18,7 @@ import org.jivesoftware.smack.packet.Stanza
 /**
  * Created by Hzxr on 2018/2/5.
  */
-class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseViewModel<ActivityHomeBinding>(activity, binding) {
+class HomeViewModel(activity: Activity, binding: ActivityHomeBinding, username: String) : BaseViewModel<ActivityHomeBinding>(activity, binding) {
 
     val onMenuItemClickListener: Toolbar.OnMenuItemClickListener
         get() = Toolbar.OnMenuItemClickListener { item ->
