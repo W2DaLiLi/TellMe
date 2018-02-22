@@ -103,5 +103,6 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
         val intent = Intent(activity, HomeActivity::class.java)
         intent.putExtra("username", username)
         activity.startActivity(intent)
+        activity.finish()
     }
 }
