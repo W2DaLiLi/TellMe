@@ -46,7 +46,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
                 android:text="@={vm.username}"
-                bind:addTextChangedListener="@{vm.usernameTextWatcher}"/>
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                bind:addTextChangedListener="@{vm.usernameTextWatcher}"
+                bind:onEditorActionListener="@{vm.usernameOnEditorActionListener}"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -69,7 +72,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:text="@={vm.password}"
-                bind:addTextChangedListener="@{vm.passwordTextWatcher}"/>
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                bind:addTextChangedListener="@{vm.passwordTextWatcher}"
+                bind:onEditorActionListener="@{vm.passwordOnEditorActionListener}"/>
         </android.support.design.widget.TextInputLayout>
 
         <CheckBox

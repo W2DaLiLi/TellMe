@@ -7,14 +7,14 @@ import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
 import com.example.hzxr.tellme.net.RetrofitManager
 import com.example.hzxr.tellme.net.ApiService
+import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.net.model.Users
 import io.objectbox.android.AndroidScheduler
-import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.Scheduler
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.jivesoftware.smack.roster.Roster
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,28 +37,16 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
-//            val box = (activity.application as TellMeApp).boxStore
+            //            val box = (activity.application as TellMeApp).boxStore
 //            val account = AccountDatehelper.queryAccountByUsername(box, "000")
 //            Log.d("TAG", account.toString())
-            val retrofit = RetrofitManager.getInstance()?: return@OnClickListener
-            val service = retrofit.create(ApiService::class.java)
-            val observable = service.getAllUser()
-            observable.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object :Observer<Users> {
-                        override fun onComplete() {}
-
-                        override fun onNext(users: Users) {
-                            for (item in users.userList)
-                                Log.d("TAG", "Username: " + item.username)
-                        }
-
-                        override fun onError(e: Throwable) {
-                            e.printStackTrace()
-                        }
-
-                        override fun onSubscribe(d: Disposable) {}
-                    })
+            Thread {
+                val roster = Roster.getInstanceFor(ConnectManager.getConnect())
+                val entries = roster.entries
+                for (item in entries) {
+                    Log.d("TAG", "name:" + item.name + "groups" + item.groups + "type:" + item.type)
+                }
+            }.start()
         }
 
     val testHomeOnClickListener: View.OnClickListener

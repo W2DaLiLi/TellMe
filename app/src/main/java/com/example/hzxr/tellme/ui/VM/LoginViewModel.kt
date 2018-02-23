@@ -10,6 +10,8 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.Util.ActivitysUtil
@@ -52,6 +54,26 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
             }
         }
 
+    val usernameOnEditorActionListener: TextView.OnEditorActionListener
+        get() = TextView.OnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                if (TextUtils.isEmpty(username)) {
+                    usernameInputError = activity.getString(R.string.errorUsername)
+                    return@OnEditorActionListener true
+                }
+            }
+            false
+        }
+
+    val passwordOnEditorActionListener: TextView.OnEditorActionListener
+        get() = TextView.OnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                login()
+                return@OnEditorActionListener true
+            }
+            false
+        }
+
     val onLoginButtonClickListener: View.OnClickListener
         get() = View.OnClickListener { login() }
 
@@ -85,7 +107,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
                     //todo:goto homeActivity
                     startEventService()
-                    startHomeActivityWithData(username?: return)
+                    startHomeActivityWithData(username ?: return)
                 }
                 2 -> {
                     Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()
