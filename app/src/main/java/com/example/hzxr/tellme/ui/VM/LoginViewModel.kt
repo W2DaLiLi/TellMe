@@ -14,9 +14,10 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import com.example.hzxr.tellme.R
-import com.example.hzxr.tellme.Util.ActivitysUtil
+import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityLoginBinding
+import com.example.hzxr.tellme.db.DBUtil.AccountDatahelper
 import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.service.EventService
 import com.example.hzxr.tellme.ui.HomeActivity
@@ -126,5 +127,25 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
         intent.putExtra("username", username)
         activity.startActivity(intent)
         activity.finish()
+        fetchAndLoadAccountData()
     }
+
+    private fun fetchAndLoadAccountData() {
+        Thread {
+            val boxStore = (activity.application as TellMeApp).boxStore
+            if (AccountDatahelper.queryAccountByUsername(boxStore, username
+                            ?: return@Thread) == null) {
+                val accountManager = ConnectManager.getAccountManager()?: return@Thread
+                val name = accountManager.getAccountAttribute("name")
+                val email = accountManager.getAccountAttribute("email")
+                val accountMap = mutableMapOf("username" to username,
+                        "nickname" to name,
+                        "email" to email,
+                        "role" to "user",
+                        "friends" to null).toMap()
+                AccountDatahelper.add(boxStore, accountMap)
+            }
+        }.start()
+    }
+
 }

@@ -3,8 +3,10 @@ package com.example.hzxr.tellme.ui.VM
 import android.app.Activity
 import android.util.Log
 import android.view.View
+import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
+import com.example.hzxr.tellme.db.DBUtil.AccountDatahelper
 import com.example.hzxr.tellme.net.RetrofitManager
 import com.example.hzxr.tellme.net.ApiService
 import com.example.hzxr.tellme.net.ConnectManager
@@ -38,21 +40,21 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
-            //            val box = (activity.application as TellMeApp).boxStore
-//            val account = AccountDatehelper.queryAccountByUsername(box, "000")
-//            Log.d("TAG", account.toString())
-            Thread {
-                val roster = Roster.getInstanceFor(ConnectManager.getConnect())
-                val entries = roster.entries
-                for (item in entries) {
-                    Log.d("TAG", "name:" + item.name + "groups" + item.groups[0].name + "type:" + item.type)
-                }
+                        val box = (activity.application as TellMeApp).boxStore
+            val account = AccountDatahelper.queryAccountByUsername(box, "123")
+            Log.d("TAG", account.toString())
+//            Thread {
+//                val roster = ConnectManager.getRoster()?: return@Thread
+//                val entries = roster.entries
+//                for (item in entries) {
+//                    Log.d("TAG", "name:" + item.name + "groups" + item.groups[0].name + "type:" + item.type)
+//                }
 //                val accountManager = AccountManager.getInstance(ConnectManager.getConnect())
 //                val attributesSet = accountManager.accountAttributes
 //                for (item in attributesSet) {
 //                    Log.d("TAG", item + ": " + accountManager.getAccountAttribute(item))
 //                }
-            }.start()
+//            }.start()
         }
 
     val testHomeOnClickListener: View.OnClickListener

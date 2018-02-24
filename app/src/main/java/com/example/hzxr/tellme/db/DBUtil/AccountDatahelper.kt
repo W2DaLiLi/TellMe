@@ -10,7 +10,7 @@ import io.objectbox.relation.ToMany
 /**
  * Created by Hzxr on 2018/1/21.
  */
-object AccountDatehelper {
+object AccountDatahelper {
 
     fun add(boxStore: BoxStore, map: Map<String, Any?>): Boolean {
         if (map.isEmpty()) return false
