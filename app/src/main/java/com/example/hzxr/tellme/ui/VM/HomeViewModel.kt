@@ -8,6 +8,7 @@ import android.util.Log
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.databinding.ActivityHomeBinding
 import com.example.hzxr.tellme.net.ConnectManager
+import io.objectbox.BoxStore
 import org.jivesoftware.smack.StanzaListener
 import org.jivesoftware.smack.filter.AndFilter
 import org.jivesoftware.smack.filter.PacketFilter
@@ -18,7 +19,7 @@ import org.jivesoftware.smack.packet.Stanza
 /**
  * Created by Hzxr on 2018/2/5.
  */
-class HomeViewModel(activity: Activity, binding: ActivityHomeBinding, username: String) : BaseViewModel<ActivityHomeBinding>(activity, binding) {
+class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseViewModel<ActivityHomeBinding>(activity, binding) {
 
     val onMenuItemClickListener: Toolbar.OnMenuItemClickListener
         get() = Toolbar.OnMenuItemClickListener { item ->

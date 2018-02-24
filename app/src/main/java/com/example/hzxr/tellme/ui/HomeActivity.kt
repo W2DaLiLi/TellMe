@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import com.example.hzxr.tellme.R
+import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.ui.VM.HomeViewModel
 import com.example.hzxr.tellme.ui.adapter.ViewPagerAdapter
 import com.example.hzxr.tellme.databinding.ActivityHomeBinding
@@ -23,8 +24,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
-        val username = intent.getStringExtra("username")?: return
-        val viewModel = HomeViewModel(this, binding, username)
+        val boxStore = (application as TellMeApp).boxStore
+        val viewModel = HomeViewModel(this, binding)
         binding.vm = viewModel
         initView(binding)
     }
