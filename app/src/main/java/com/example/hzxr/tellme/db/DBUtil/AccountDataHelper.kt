@@ -40,16 +40,14 @@ object AccountDataHelper {
 
     fun queryAccountByUsername(boxStore: BoxStore, username: String): Account? {
         val accountBox = boxStore.boxFor(Account::class.java)
-        val result = accountBox.query().equal(Account_.username, username).build().findFirst()
-        return result
+        return accountBox.query().equal(Account_.username, username).build().findFirst()
     }
 
     private fun mapToAccountObject(map: Map<String, Any?>): Account {
-        val username = map.getValue("username") as String
-        val nickname = map.getValue("nickname") as String?
-        val email = map.getValue("email") as String
-        val role = map.getValue("role") as String
-        val friends = map.getValue("friends") as ToMany<Member>?
-        return Account(username = username, nickname = nickname, email = email, role = role, friends = friends)
+        return Account(username = map["username"] as String,
+                nickname = map["nickname"] as String?,
+                email = map["email"] as String,
+                role = map["role"] as String,
+                friends = map["friends"] as ToMany<Member>?)
     }
 }
