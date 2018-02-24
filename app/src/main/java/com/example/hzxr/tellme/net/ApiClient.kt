@@ -15,21 +15,9 @@ object ApiClient {
     private val retrofit = RetrofitManager.getInstance()
     private val service = retrofit?.create(ApiService::class.java)
 
-
-    var listener: ((List<User>) -> Unit)? = null
-
     fun getAllUserInServer() : Observable<Users>?{
-//        var userList: List<User>? = null
         return service?.getAllUser()?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-//                .subscribe {
-//                    users ->
-//                    userList = users.getUserList()
-////                    Log.d("TAG", userList.toString())
-////                    listener?.invoke(users.getUserList())
-//                }
-//        Log.d("TAG","apiClient userList: " + userList.toString())
-//        return userList
     }
 
 

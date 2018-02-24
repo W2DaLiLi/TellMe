@@ -19,6 +19,12 @@ object AccountDatehelper {
         return true
     }
 
+    fun add(boxStore: BoxStore, account: Account): Boolean {
+        val accountBox = boxStore.boxFor(Account::class.java)
+        accountBox.put(account)
+        return true
+    }
+
     fun delete(boxStore: BoxStore, username: String) {
         val accountBox = boxStore.boxFor(Account::class.java)
         val account = queryAccountByUsername(boxStore, username) ?: return
