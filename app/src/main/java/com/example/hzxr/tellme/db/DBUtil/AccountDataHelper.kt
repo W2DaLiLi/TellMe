@@ -10,7 +10,14 @@ import io.objectbox.relation.ToMany
 /**
  * Created by Hzxr on 2018/1/21.
  */
-object AccountDatahelper {
+object AccountDataHelper {
+
+    var currentAccount: Account? = null
+        private set
+
+    fun setCurrentAccountByName(boxStore: BoxStore, username: String) {
+        currentAccount = queryAccountByUsername(boxStore, username)
+    }
 
     fun add(boxStore: BoxStore, map: Map<String, Any?>): Boolean {
         if (map.isEmpty()) return false

@@ -6,21 +6,7 @@ import android.view.View
 import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
-import com.example.hzxr.tellme.db.DBUtil.AccountDatahelper
-import com.example.hzxr.tellme.net.RetrofitManager
-import com.example.hzxr.tellme.net.ApiService
-import com.example.hzxr.tellme.net.ConnectManager
-import com.example.hzxr.tellme.net.model.Users
-import io.objectbox.android.AndroidScheduler
-import io.reactivex.*
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import org.jivesoftware.smack.roster.Roster
-import org.jivesoftware.smackx.iqregister.AccountManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 
 /**
  * Created by Hzxr on 2018/1/20.
@@ -41,7 +27,7 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
                         val box = (activity.application as TellMeApp).boxStore
-            val account = AccountDatahelper.queryAccountByUsername(box, "123")
+            val account = AccountDataHelper.queryAccountByUsername(box, "123")
             Log.d("TAG", account.toString())
 //            Thread {
 //                val roster = ConnectManager.getRoster()?: return@Thread

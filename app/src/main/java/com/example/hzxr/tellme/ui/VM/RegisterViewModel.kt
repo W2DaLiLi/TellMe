@@ -10,7 +10,7 @@ import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityRegisterBinding
-import com.example.hzxr.tellme.db.DBUtil.AccountDatahelper
+import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.net.ConnectManager
 import org.jivesoftware.smack.XMPPException
 import org.jivesoftware.smackx.iqregister.AccountManager
@@ -94,6 +94,6 @@ class RegisterViewModel(activity: Activity, binding: ActivityRegisterBinding) : 
                 "role" to "user",
                 "friends" to null).toMap()
         val box = (activity.application as TellMeApp).boxStore
-        AccountDatahelper.add(box, data)
+        AccountDataHelper.add(box, data)
     }
 }
