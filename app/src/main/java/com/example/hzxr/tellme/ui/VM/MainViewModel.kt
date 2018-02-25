@@ -29,11 +29,12 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
 
-//            val box = (activity.application as TellMeApp).boxStore
-//            val memberbox = box.boxFor(Member::class.java)
-//            for (item in memberbox.all) {
-//                Log.d("TAG", "username:"+ item.username + "parents: " + item.parentId.toString())
-//            }
+            val box = (activity.application as TellMeApp).boxStore
+            val memberbox = box.boxFor(Member::class.java)
+            val list = memberbox.all
+            for (item in list) {
+                Log.d("TAG", "username:"+ item.username + "parents: " + item.parentId.toString())
+            }
 //            Thread {
 //                val roster = ConnectManager.getRoster()?: return@Thread
 //                val entries = roster.entries

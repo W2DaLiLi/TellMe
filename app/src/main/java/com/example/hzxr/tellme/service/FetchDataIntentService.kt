@@ -6,8 +6,10 @@ import android.content.Intent
 import android.util.Log
 import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
+import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
 import com.example.hzxr.tellme.db.model.Group
+import com.example.hzxr.tellme.db.model.Member
 import com.example.hzxr.tellme.net.ConnectManager
 import io.objectbox.BoxStore
 import io.objectbox.relation.RelationInfo
@@ -43,6 +45,7 @@ class FetchDataIntentService : IntentService("FetchData") {
         val boxStore = (application as TellMeApp).boxStore
         fetchAndLoadAccountData(boxStore, username)
         fetchAndLoadMembersData(boxStore)
+        fetchAndLoadGroupData(boxStore)
     }
 
     private fun fetchAndLoadAccountData(boxStore: BoxStore, username: String) {
@@ -66,17 +69,31 @@ class FetchDataIntentService : IntentService("FetchData") {
         val roster = ConnectManager.getRoster() ?: return
         val entries = roster.entries
         Log.d("TAG", "entry count: " + entries.size)
+        if (entries.isEmpty()) return
         for (item in entries) {
             val data = mutableMapOf("username" to item.jid.toString(),
                     "nickname" to item.name,
                     "parentId" to item.groups.map { rosterGroup ->
                         Group(name = rosterGroup.name,
                                 description = null,
-                                admin = null,
-                                members = null)
+                                admin = null)
                     }.toList()).toMap()
             Log.d("TAG", data.toString())
             MemberDataHelper.add(boxStore, data)
+        }
+    }
+
+    private fun fetchAndLoadGroupData(boxStore: BoxStore) {
+        val roster = ConnectManager.getRoster() ?: return
+        val groups = roster.groups
+        Log.d("TAG", "groups:" + groups.size)
+        if (groups.isEmpty()) return
+        for (item in groups) {
+            val data = mutableMapOf("name" to item.name,
+                    "description" to null,
+                    "admin" to null).toMap()
+            Log.d("TAG", data.toString())
+            GroupDataHelper.add(boxStore, data)
         }
     }
 }

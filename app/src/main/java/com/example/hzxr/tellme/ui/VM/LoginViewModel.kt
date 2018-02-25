@@ -109,7 +109,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
                     //todo:goto homeActivity
                     startEventService()
-                    startHomeActivityWithData()
+                    startHomeActivityAndFetchDataService()
                 }
                 2 -> {
                     Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()
@@ -123,7 +123,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
         activity.startService(intent)
     }
 
-    private fun startHomeActivityWithData() {
+    private fun startHomeActivityAndFetchDataService() {
         val intent = Intent(activity, HomeActivity::class.java)
         activity.startActivity(intent)
         FetchDataIntentService.startService(activity, username?: return)
