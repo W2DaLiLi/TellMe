@@ -29,6 +29,11 @@ object MemberDataHelper {
         return memberBox.query().equal(Member_.username, username).build().findFirst()
     }
 
+    fun getAllMembers(boxStore: BoxStore): List<Member> {
+        val memberBox = boxStore.boxFor(Member::class.java)
+        return memberBox.all
+    }
+
     private fun mapToMemberObject(data: Map<String, Any?>): Member {
         val member = Member(username = data["username"] as String,
                 nickname = data["nickname"] as String?,
