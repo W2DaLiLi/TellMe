@@ -29,6 +29,7 @@
         <activity android:name=".ui.AddFriendActivity"
             android:theme="@style/HomeActivity"/>
         <service android:name=".service.EventService"/>
+        <service android:name=".service.FetchDataIntentService"/>
     </application>
 
 </manifest>

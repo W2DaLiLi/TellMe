@@ -13,8 +13,8 @@ data class Group(
         var id: Long = 0,
         var name: String,
         var description: String? = null,
-        var admin: String,
+        var admin: String? = null,
         var members: List<Member>? = null
 ) {
-        constructor() : this(0, "", null, "", listOf())
+        constructor() : this(0, "", null, null, listOf())
 }

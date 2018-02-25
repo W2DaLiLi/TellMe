@@ -81,13 +81,14 @@
         {
           "id": "3:1289211685516979846",
           "name": "nickname"
-        },
-        {
-          "id": "4:573514125144894670",
-          "name": "parentId"
         }
       ],
-      "relations": []
+      "relations": [
+        {
+          "id": "4:7276402726969264527",
+          "name": "parentId"
+        }
+      ]
     },
     {
       "id": "5:1846036375377061281",
@@ -154,7 +155,7 @@
   ],
   "lastEntityId": "6:1890482838202699614",
   "lastIndexId": "2:1306896458281535406",
-  "lastRelationId": "3:8153668452837692852",
+  "lastRelationId": "4:7276402726969264527",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
@@ -167,7 +168,8 @@
   "retiredPropertyUids": [
     2224763477240602574,
     8282030996749426071,
-    2442852876338947422
+    2442852876338947422,
+    573514125144894670
   ],
   "retiredRelationUids": [],
   "version": 1

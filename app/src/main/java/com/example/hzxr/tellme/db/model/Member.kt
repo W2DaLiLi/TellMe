@@ -12,7 +12,7 @@ data class Member(
         var id: Long = 0,
         var username: String,
         var nickname: String? = null,
-        var parentId: String
+        var parentId: List<Group>
 ) {
-        constructor() : this(0, "", null, "")
+        constructor() : this(0, "", null, listOf())
 }

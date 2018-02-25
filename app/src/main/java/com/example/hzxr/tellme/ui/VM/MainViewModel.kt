@@ -7,6 +7,8 @@ import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
+import com.example.hzxr.tellme.db.model.Member
+import io.objectbox.internal.ToManyGetter
 
 /**
  * Created by Hzxr on 2018/1/20.
@@ -26,9 +28,12 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
-                        val box = (activity.application as TellMeApp).boxStore
-            val account = AccountDataHelper.queryAccountByUsername(box, "123")
-            Log.d("TAG", account.toString())
+
+//            val box = (activity.application as TellMeApp).boxStore
+//            val memberbox = box.boxFor(Member::class.java)
+//            for (item in memberbox.all) {
+//                Log.d("TAG", "username:"+ item.username + "parents: " + item.parentId.toString())
+//            }
 //            Thread {
 //                val roster = ConnectManager.getRoster()?: return@Thread
 //                val entries = roster.entries

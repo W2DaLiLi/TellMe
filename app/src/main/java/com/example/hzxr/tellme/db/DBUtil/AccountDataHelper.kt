@@ -44,10 +44,13 @@ object AccountDataHelper {
     }
 
     private fun mapToAccountObject(map: Map<String, Any?>): Account {
-        return Account(username = map["username"] as String,
+        val account = Account(username = map["username"] as String,
                 nickname = map["nickname"] as String?,
                 email = map["email"] as String,
                 role = map["role"] as String,
-                friends = map["friends"] as ToMany<Member>?)
+                friends = listOf())
+        if (map["friends"] != null)
+            account.friends.toMutableList().addAll(map["friends"] as List<Member>)
+        return account
     }
 }

@@ -20,6 +20,7 @@ import com.example.hzxr.tellme.databinding.ActivityLoginBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.service.EventService
+import com.example.hzxr.tellme.service.FetchDataIntentService
 import com.example.hzxr.tellme.ui.HomeActivity
 import org.jivesoftware.smack.XMPPException
 
@@ -125,28 +126,8 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     private fun startHomeActivityWithData() {
         val intent = Intent(activity, HomeActivity::class.java)
         activity.startActivity(intent)
+        FetchDataIntentService.startService(activity, username?: return)
         activity.finish()
-        fetchAndLoadAccountData()
-    }
-
-    private fun fetchAndLoadAccountData() {
-        Thread {
-            val boxStore = (activity.application as TellMeApp).boxStore
-            if (AccountDataHelper.queryAccountByUsername(boxStore, username
-                            ?: return@Thread) == null) {
-                val accountManager = ConnectManager.getAccountManager()?: return@Thread
-                val name = accountManager.getAccountAttribute("name")
-                val email = accountManager.getAccountAttribute("email")
-                val accountMap = mutableMapOf("username" to username,
-                        "nickname" to name,
-                        "email" to email,
-                        "role" to "user",
-                        "friends" to null).toMap()
-                AccountDataHelper.add(boxStore, accountMap)
-            }
-            //目前只允许在登陆处设置当前用户，后续如果有切换账号功能可能会再做修改
-            AccountDataHelper.setCurrentAccountByName(boxStore, username?: return@Thread)
-        }.start()
     }
 
 }

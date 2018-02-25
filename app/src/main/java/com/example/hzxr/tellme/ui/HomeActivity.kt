@@ -24,7 +24,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
-        val boxStore = (application as TellMeApp).boxStore
         val viewModel = HomeViewModel(this, binding)
         binding.vm = viewModel
         initView(binding)
