@@ -30,6 +30,8 @@
             android:theme="@style/HomeActivity"/>
         <activity android:name=".ui.ProfileActivity"
             android:theme="@style/HomeActivity"/>
+        <activity android:name=".ui.ChatActivity"
+            android:theme="@style/HomeActivity"/>
         <service android:name=".service.EventService"/>
         <service android:name=".service.FetchDataIntentService"/>
     </application>

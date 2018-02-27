@@ -1,6 +1,7 @@
 package com.example.hzxr.tellme.ui.VM
 
 import android.app.Activity
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import com.example.hzxr.tellme.TellMeApp
@@ -11,6 +12,7 @@ import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
 import com.example.hzxr.tellme.db.model.*
 import com.example.hzxr.tellme.net.ConnectManager
+import com.example.hzxr.tellme.ui.ChatActivity
 import io.objectbox.internal.ToManyGetter
 import org.jivesoftware.smackx.offline.OfflineMessageManager
 
@@ -33,12 +35,14 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
 
-            val box = (activity.application as TellMeApp).boxStore
-            val accountBox = box.boxFor(Account::class.java)
-            val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
-            Log.d("TAG", list?.toList().toString())
-            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
-            Log.d("TAG", messageManager.messages.toString())
+//            val box = (activity.application as TellMeApp).boxStore
+//            val accountBox = box.boxFor(Account::class.java)
+//            val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
+//            Log.d("TAG", list?.toList().toString())
+//            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
+//            Log.d("TAG", messageManager.messages.toString())
+            val intent = Intent(activity, ChatActivity::class.java)
+            activity.startActivity(intent)
         }
 
     val testHomeOnClickListener: View.OnClickListener

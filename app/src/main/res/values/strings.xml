@@ -23,6 +23,7 @@
     <string name="user_profile">Profile</string>
     <string name="add_friend">Add Friend</string>
     <string name="search_friend">Search Friend</string>
+    <string name="send">Send</string>
 
     <string name="clean_db">Clean DB</string>
 </resources>
