@@ -8,15 +8,13 @@ import io.objectbox.relation.ToMany
  * Created by Hzxr on 2018/1/20.
  */
 @Entity
-data class Account(
+class Account {
         @Id
-        var id: Long = 0,
-        var username: String,
-        var nickname: String? = null,
-        var email: String? = null,
-        var role: String,
+        var id: Long = 0
+        var username: String = ""
+        var nickname: String? = null
+        var email: String? = null
+        var role: String = ""
 
-        var friends: List<Member>
-        ){
-        constructor() : this(0,"",null,null,"user", listOf())
+        lateinit var friends: ToMany<Member>
 }

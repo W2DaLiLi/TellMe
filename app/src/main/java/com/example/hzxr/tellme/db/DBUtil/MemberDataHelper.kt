@@ -43,10 +43,10 @@ object MemberDataHelper {
         memberBox.removeAll()
     }
 
-    private fun mapToMemberObject(data: Map<String, Any?>): Member {
-        val member = Member(username = data["username"] as String,
-                nickname = data["nickname"] as String?,
-                parentId = listOf())
+    fun mapToMemberObject(data: Map<String, Any?>): Member {
+        val member = Member()
+        member.username = data["username"] as String
+                member.nickname = data["nickname"] as String?
         if (data["parentId"] != null)
             member.parentId.toMutableList().addAll(data["parentId"] as List<Group>)
         return member

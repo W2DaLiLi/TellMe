@@ -9,8 +9,7 @@ import com.example.hzxr.tellme.databinding.ActivityMainBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
-import com.example.hzxr.tellme.db.model.Group
-import com.example.hzxr.tellme.db.model.Member
+import com.example.hzxr.tellme.db.model.*
 import io.objectbox.internal.ToManyGetter
 
 /**
@@ -33,23 +32,9 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
         get() = View.OnClickListener {
 
             val box = (activity.application as TellMeApp).boxStore
-            val memberbox = box.boxFor(Member::class.java)
-            val list = memberbox.all
-            for (item in list) {
-                Log.d("TAG", "username:" + item.username + "parents: " + item.parentId.toString())
-            }
-//            Thread {
-//                val roster = ConnectManager.getRoster()?: return@Thread
-//                val entries = roster.entries
-//                for (item in entries) {
-//                    Log.d("TAG", "name:" + item.name + "groups" + item.groups[0].name + "type:" + item.type)
-//                }
-//                val accountManager = AccountManager.getInstance(ConnectManager.getConnect())
-//                val attributesSet = accountManager.accountAttributes
-//                for (item in attributesSet) {
-//                    Log.d("TAG", item + ": " + accountManager.getAccountAttribute(item))
-//                }
-//            }.start()
+            val accountBox = box.boxFor(Account::class.java)
+            val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
+            Log.d("TAG", list?.toList().toString())
         }
 
     val testHomeOnClickListener: View.OnClickListener

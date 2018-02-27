@@ -14,6 +14,7 @@ import com.example.hzxr.tellme.net.ConnectManager
 import io.objectbox.BoxStore
 import io.objectbox.relation.RelationInfo
 import io.objectbox.relation.ToMany
+import kotlin.math.log
 
 /**
  * Created by Hzxr on 2018/2/25.
@@ -78,6 +79,10 @@ class FetchDataIntentService : IntentService("FetchData") {
                     }.toList()).toMap()
             Log.d("TAG", data.toString())
             MemberDataHelper.add(boxStore, data)
+            val result = AccountDataHelper.loadAccountFriend(boxStore,
+                    MemberDataHelper.queryMemberByName(boxStore, data["username"] as String)
+                            ?: return)
+            Log.d("TAG", "load friend result:"+ result)
         }
     }
 

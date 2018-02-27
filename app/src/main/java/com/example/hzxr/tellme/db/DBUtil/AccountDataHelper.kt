@@ -11,7 +11,7 @@ import io.objectbox.relation.ToMany
  * Created by Hzxr on 2018/1/21.
  */
 object AccountDataHelper {
-
+    @Volatile
     var currentAccount: Account? = null
         private set
 
@@ -48,14 +48,23 @@ object AccountDataHelper {
         accountBox.removeAll()
     }
 
+    fun loadAccountFriend(boxStore: BoxStore, member: Member): Boolean {
+        val account = currentAccount ?: return false
+        if (account.friends.contains(member)) return false
+        val accountBox = boxStore.boxFor(Account::class.java)
+        account.friends.add(member)
+        accountBox.put(account)
+        return true
+    }
+
     private fun mapToAccountObject(map: Map<String, Any?>): Account {
-        val account = Account(username = map["username"] as String,
-                nickname = map["nickname"] as String?,
-                email = map["email"] as String,
-                role = map["role"] as String,
-                friends = listOf())
+        val account = Account()
+        account.username = map["username"] as String
+        account.nickname = map["nickname"] as String?
+        account.email = map["email"] as String
+        account.role = map["role"] as String
         if (map["friends"] != null)
-            account.friends.toMutableList().addAll(map["friends"] as List<Member>)
+            account.friends.addAll(map["friends"] as List<Member>)
         return account
     }
 }
