@@ -2,10 +2,7 @@ package com.example.hzxr.tellme.Util
 
 import android.content.Context
 import android.content.Intent
-import com.example.hzxr.tellme.ui.AddFriendActivity
-import com.example.hzxr.tellme.ui.HomeActivity
-import com.example.hzxr.tellme.ui.LoginActivity
-import com.example.hzxr.tellme.ui.RegisterActivity
+import com.example.hzxr.tellme.ui.*
 
 /**
  * Created by Hzxr on 2018/1/20.
@@ -29,6 +26,11 @@ object ActivitysUtil {
 
     fun startActivityToAddFriend(context: Context) {
         val intent = Intent(context, AddFriendActivity::class.java)
+        context.startActivity(intent)
+    }
+
+    fun startActivityToProfire(context: Context) {
+        val intent = Intent(context, ProfileActivity::class.java)
         context.startActivity(intent)
     }
 }

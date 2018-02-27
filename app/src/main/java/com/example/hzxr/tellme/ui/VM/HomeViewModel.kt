@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 
 import com.example.hzxr.tellme.R
+import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityHomeBinding
 import com.example.hzxr.tellme.net.ConnectManager
 import io.objectbox.BoxStore
@@ -25,6 +26,7 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
         get() = Toolbar.OnMenuItemClickListener { item ->
             if (item.itemId == R.id.action_add_friend) {
                 Log.d("TAG", "action add friend")
+                ActivitysUtil.startActivityToAddFriend(activity)
             }
             true
         }
@@ -35,6 +37,7 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
             when (item.itemId) {
                 R.id.navigation_profile -> {
                     Log.d("TAG", "navigation profile")
+                    ActivitysUtil.startActivityToProfire(activity)
                 }
                 R.id.navigation_settings -> {
                     Log.d("TAG", "navigation settings")
