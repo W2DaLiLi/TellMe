@@ -13,8 +13,12 @@ object MemberDataHelper {
 
     fun add(boxStore: BoxStore, data: Map<String, Any?>): Boolean {
         if (data.isEmpty()) return false
-        val memberBox = boxStore.boxFor(Member::class.java)
-        memberBox.put(mapToMemberObject(data))
+        val username = data["username"] as String
+        if (queryMemberByName(boxStore, username) == null) {
+            val memberBox = boxStore.boxFor(Member::class.java)
+            memberBox.put(mapToMemberObject(data))
+        } else
+            return false
         return true
     }
 

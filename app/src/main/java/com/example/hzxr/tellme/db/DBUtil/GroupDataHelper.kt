@@ -12,8 +12,12 @@ object GroupDataHelper {
 
     fun add(boxStore: BoxStore, data: Map<String, Any?>): Boolean {
         if (data.isEmpty()) return false
-        val groupBox = boxStore.boxFor(Group::class.java)
-        groupBox.put(mapToGroupObject(data))
+        val name = data["name"] as String
+        if (queryGroupByName(boxStore, name) == null) {
+            val groupBox = boxStore.boxFor(Group::class.java)
+            groupBox.put(mapToGroupObject(data))
+        } else
+            return false
         return true
     }
 
