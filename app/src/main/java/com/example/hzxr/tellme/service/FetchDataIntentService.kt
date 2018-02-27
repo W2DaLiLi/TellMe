@@ -44,8 +44,8 @@ class FetchDataIntentService : IntentService("FetchData") {
         val username = intent?.getStringExtra("username") ?: return
         val boxStore = (application as TellMeApp).boxStore
         fetchAndLoadAccountData(boxStore, username)
-        fetchAndLoadMembersData(boxStore)
         fetchAndLoadGroupData(boxStore)
+        fetchAndLoadMembersData(boxStore)
     }
 
     private fun fetchAndLoadAccountData(boxStore: BoxStore, username: String) {
@@ -74,9 +74,7 @@ class FetchDataIntentService : IntentService("FetchData") {
             val data = mutableMapOf("username" to item.jid.toString(),
                     "nickname" to item.name,
                     "parentId" to item.groups.map { rosterGroup ->
-                        Group(name = rosterGroup.name,
-                                description = null,
-                                admin = null)
+                        GroupDataHelper.queryGroupByName(boxStore, rosterGroup.name)
                     }.toList()).toMap()
             Log.d("TAG", data.toString())
             MemberDataHelper.add(boxStore, data)

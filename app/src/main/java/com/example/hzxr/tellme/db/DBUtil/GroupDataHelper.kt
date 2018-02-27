@@ -32,7 +32,7 @@ object GroupDataHelper {
         groupBox.removeAll()
     }
 
-    private fun queryGroupByName(boxStore: BoxStore, name: String): Group? {
+    fun queryGroupByName(boxStore: BoxStore, name: String): Group? {
         val groupBox = boxStore.boxFor(Group::class.java)
         return groupBox.query().equal(Group_.name, name).build().findFirst()
     }
