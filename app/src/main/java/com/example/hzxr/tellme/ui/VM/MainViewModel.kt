@@ -7,6 +7,9 @@ import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.ActivityMainBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
+import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
+import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
+import com.example.hzxr.tellme.db.model.Group
 import com.example.hzxr.tellme.db.model.Member
 import io.objectbox.internal.ToManyGetter
 
@@ -33,7 +36,7 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
             val memberbox = box.boxFor(Member::class.java)
             val list = memberbox.all
             for (item in list) {
-                Log.d("TAG", "username:"+ item.username + "parents: " + item.parentId.toString())
+                Log.d("TAG", "username:" + item.username + "parents: " + item.parentId.toString())
             }
 //            Thread {
 //                val roster = ConnectManager.getRoster()?: return@Thread
@@ -57,5 +60,13 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
     val testAddFriendOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
             ActivitysUtil.startActivityToAddFriend(activity)
+        }
+
+    val testCleanDBOnClickListener: View.OnClickListener
+        get() = View.OnClickListener {
+            val boxStore = (activity.application as TellMeApp).boxStore
+            AccountDataHelper.removeAll(boxStore)
+            GroupDataHelper.removeAll(boxStore)
+            MemberDataHelper.removeAll(boxStore)
         }
 }

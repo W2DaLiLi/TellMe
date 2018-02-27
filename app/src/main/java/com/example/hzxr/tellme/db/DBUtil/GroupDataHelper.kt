@@ -23,6 +23,11 @@ object GroupDataHelper {
         groupBox.remove(target)
     }
 
+    fun removeAll(boxStore: BoxStore) {
+        val groupBox = boxStore.boxFor(Group::class.java)
+        groupBox.removeAll()
+    }
+
     private fun queryGroupByName(boxStore: BoxStore, name: String): Group? {
         val groupBox = boxStore.boxFor(Group::class.java)
         return groupBox.query().equal(Group_.name, name).build().findFirst()

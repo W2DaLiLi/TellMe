@@ -43,6 +43,11 @@ object AccountDataHelper {
         return accountBox.query().equal(Account_.username, username).build().findFirst()
     }
 
+    fun removeAll(boxStore: BoxStore) {
+        val accountBox = boxStore.boxFor(Account::class.java)
+        accountBox.removeAll()
+    }
+
     private fun mapToAccountObject(map: Map<String, Any?>): Account {
         val account = Account(username = map["username"] as String,
                 nickname = map["nickname"] as String?,

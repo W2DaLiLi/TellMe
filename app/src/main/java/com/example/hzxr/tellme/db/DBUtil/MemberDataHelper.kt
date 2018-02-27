@@ -34,6 +34,11 @@ object MemberDataHelper {
         return memberBox.all
     }
 
+    fun removeAll(boxStore: BoxStore) {
+        val memberBox = boxStore.boxFor(Member::class.java)
+        memberBox.removeAll()
+    }
+
     private fun mapToMemberObject(data: Map<String, Any?>): Member {
         val member = Member(username = data["username"] as String,
                 nickname = data["nickname"] as String?,
