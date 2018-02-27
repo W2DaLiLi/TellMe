@@ -10,7 +10,9 @@ import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
 import com.example.hzxr.tellme.db.model.*
+import com.example.hzxr.tellme.net.ConnectManager
 import io.objectbox.internal.ToManyGetter
+import org.jivesoftware.smackx.offline.OfflineMessageManager
 
 /**
  * Created by Hzxr on 2018/1/20.
@@ -35,6 +37,8 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
             val accountBox = box.boxFor(Account::class.java)
             val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
             Log.d("TAG", list?.toList().toString())
+            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
+            Log.d("TAG", messageManager.messages.toString())
         }
 
     val testHomeOnClickListener: View.OnClickListener
