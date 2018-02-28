@@ -29,7 +29,7 @@ object ActivitysUtil {
         context.startActivity(intent)
     }
 
-    fun startActivityToProfire(context: Context) {
+    fun startActivityToProfile(context: Context) {
         val intent = Intent(context, ProfileActivity::class.java)
         context.startActivity(intent)
     }

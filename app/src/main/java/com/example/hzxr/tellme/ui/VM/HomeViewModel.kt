@@ -37,7 +37,7 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
             when (item.itemId) {
                 R.id.navigation_profile -> {
                     Log.d("TAG", "navigation profile")
-                    ActivitysUtil.startActivityToProfire(activity)
+                    ActivitysUtil.startActivityToProfile(activity)
                 }
                 R.id.navigation_settings -> {
                     Log.d("TAG", "navigation settings")
