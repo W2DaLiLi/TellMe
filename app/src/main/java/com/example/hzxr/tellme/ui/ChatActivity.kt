@@ -15,7 +15,8 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityChatBinding>(this, R.layout.activity_chat)
-        val viewModel = ChatViewModel(this, binding)
+        val targetName = intent.getStringExtra("targetId")?: return
+        val viewModel = ChatViewModel(this, binding, targetName)
         binding.vm = viewModel
     }
 }

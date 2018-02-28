@@ -4,6 +4,7 @@ import android.app.Activity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.example.hzxr.tellme.TellMeApp
+import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.databinding.FragmentFriendsBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
@@ -27,6 +28,8 @@ class FriendsViewModel(activity: Activity, binding: FragmentFriendsBinding) : Ba
         binding.friendsRv.layoutManager = LinearLayoutManager(activity)
         adapter.onItemOnClickListener = { position ->
             Log.d("TAG", position.toString())
+            val targetId = adapter.members[position].username
+            ActivitysUtil.startActivityToChatWithId(activity, targetId)
         }
     }
 }
