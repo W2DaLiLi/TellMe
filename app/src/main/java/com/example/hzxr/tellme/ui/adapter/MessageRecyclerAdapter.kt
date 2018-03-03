@@ -1,5 +1,6 @@
 package com.example.hzxr.tellme.ui.adapter
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,12 @@ import com.example.hzxr.tellme.ui.msgType.MsgTypeFactoryImpl
 /**
  * Created by Hzxr on 2018/3/2.
  */
-class MessageRecyclerAdapter : RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder>() {
+class MessageRecyclerAdapter(activity: Activity) : RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder>() {
 
     var msgTypeFactory: MsgTypeFactory
 
     init {
-        msgTypeFactory = MsgTypeFactoryImpl()
+        msgTypeFactory = MsgTypeFactoryImpl(activity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MessageViewHolder{

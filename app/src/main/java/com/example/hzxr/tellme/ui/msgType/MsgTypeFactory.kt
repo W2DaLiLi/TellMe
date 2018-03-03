@@ -9,5 +9,5 @@ import com.example.hzxr.tellme.db.model.Msg
 interface MsgTypeFactory {
     fun type(msg: Msg): Int
 
-    fun createViewHolder(type: Int, parent: ViewGroup?)
+    fun createViewHolder(type: Int, parent: ViewGroup?): BaseMessageViewHolder<*>?
 }
