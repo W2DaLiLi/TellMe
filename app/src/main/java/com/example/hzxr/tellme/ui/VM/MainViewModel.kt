@@ -39,10 +39,10 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 //            val accountBox = box.boxFor(Account::class.java)
 //            val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
 //            Log.d("TAG", list?.toList().toString())
-//            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
-//            Log.d("TAG", messageManager.messages.toString())
-            val intent = Intent(activity, ChatActivity::class.java)
-            activity.startActivity(intent)
+            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
+            Log.d("TAG", messageManager.messages.toString())
+//            val intent = Intent(activity, ChatActivity::class.java)
+//            activity.startActivity(intent)
         }
 
     val testHomeOnClickListener: View.OnClickListener
