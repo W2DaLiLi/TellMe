@@ -12,4 +12,16 @@ class ChatViewModel(activity: Activity, binding: ActivityChatBinding, targetName
 
     private val boxStore = (activity.application as TellMeApp).boxStore
     private val target = MemberDataHelper.queryMemberByName(boxStore,targetName)
+
+    fun onResume() {
+
+    }
+
+    fun onPause() {
+
+    }
+
+    fun onDestroy() {
+
+    }
 }

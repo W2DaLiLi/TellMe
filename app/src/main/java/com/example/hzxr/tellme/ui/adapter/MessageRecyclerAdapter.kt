@@ -4,13 +4,16 @@ import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.example.hzxr.tellme.db.model.Msg
+import com.example.hzxr.tellme.ui.msgType.BaseMessageViewHolder
 import com.example.hzxr.tellme.ui.msgType.MsgTypeFactory
 import com.example.hzxr.tellme.ui.msgType.MsgTypeFactoryImpl
 
 /**
  * Created by Hzxr on 2018/3/2.
  */
-class MessageRecyclerAdapter(activity: Activity) : RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder>() {
+class MessageRecyclerAdapter(private val activity: Activity,
+                             private val msgList: List<Msg>) : RecyclerView.Adapter<BaseMessageViewHolder<*>?>() {
 
     var msgTypeFactory: MsgTypeFactory
 
@@ -18,23 +21,20 @@ class MessageRecyclerAdapter(activity: Activity) : RecyclerView.Adapter<MessageR
         msgTypeFactory = MsgTypeFactoryImpl(activity)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MessageViewHolder{
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseMessageViewHolder<*>{
+        return msgTypeFactory.createViewHolder(viewType, parent) ?: throw Exception("can't create ViewHolder for $viewType")
     }
 
-    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBindViewHolder(holder: BaseMessageViewHolder<*>?, position: Int) {
+        val msg = msgList[position]
+        if (holder == null || msg == null) return
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return msgList.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
-
-    class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        return msgList[position].type(msgTypeFactory)
     }
 }

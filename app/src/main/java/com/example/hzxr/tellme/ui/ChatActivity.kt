@@ -12,11 +12,28 @@ import com.example.hzxr.tellme.ui.VM.ChatViewModel
  */
 class ChatActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: ChatViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityChatBinding>(this, R.layout.activity_chat)
         val targetName = intent.getStringExtra("targetId")?: return
-        val viewModel = ChatViewModel(this, binding, targetName)
+        viewModel = ChatViewModel(this, binding, targetName)
         binding.vm = viewModel
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.onDestroy()
     }
 }
