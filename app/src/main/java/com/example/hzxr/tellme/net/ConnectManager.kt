@@ -4,6 +4,7 @@ import android.util.Log
 import org.jivesoftware.smack.AbstractXMPPConnection
 import org.jivesoftware.smack.ConnectionConfiguration
 import org.jivesoftware.smack.XMPPException
+import org.jivesoftware.smack.chat2.ChatManager
 import org.jivesoftware.smack.roster.Roster
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
@@ -26,6 +27,8 @@ object ConnectManager {
 
     private var accountManager: AccountManager? = null
 
+    private var chatManager: ChatManager? = null
+
     private fun initConnection() {
         Log.d("TAG", "initConnection")
         try {
@@ -45,6 +48,7 @@ object ConnectManager {
         }
     }
 
+    @Synchronized
     fun getConnect(): XMPPTCPConnection? {
         Log.d("TAG", connect.toString())
         if (connect == null) {
@@ -56,6 +60,7 @@ object ConnectManager {
     /**
      * 不要在除了ConnectManger以外的地方去构造需要使用connect的对象
      */
+    @Synchronized
     fun getRoster(): Roster? {
         if (connect != null) {
             if (roster == null)
@@ -64,12 +69,22 @@ object ConnectManager {
         return roster
     }
 
+    @Synchronized
     fun getAccountManager(): AccountManager? {
         if (connect != null) {
             if (accountManager == null)
                 accountManager = AccountManager.getInstance(connect)
         }
         return accountManager
+    }
+
+    @Synchronized
+    fun getChatManager(): ChatManager? {
+        if (connect != null) {
+            if (chatManager == null)
+                chatManager = ChatManager.getInstanceFor(connect)
+        }
+        return chatManager
     }
 
     fun disConnect() {
