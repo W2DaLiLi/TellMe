@@ -126,7 +126,9 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     private fun startHomeActivityAndFetchDataService() {
         val intent = Intent(activity, HomeActivity::class.java)
         activity.startActivity(intent)
-        FetchDataIntentService.startService(activity, username?: return)
+        val name = "$username@localhost"
+        if (name == "@localhost") return
+        FetchDataIntentService.startService(activity, name)
         activity.finish()
     }
 

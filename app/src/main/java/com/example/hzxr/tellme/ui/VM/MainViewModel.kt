@@ -10,6 +10,7 @@ import com.example.hzxr.tellme.databinding.ActivityMainBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
+import com.example.hzxr.tellme.db.DBUtil.MsgDataHelper
 import com.example.hzxr.tellme.db.model.*
 import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.ui.ChatActivity
@@ -35,15 +36,18 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
     val testDebugOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
 
-//            val box = (activity.application as TellMeApp).boxStore
+            val box = (activity.application as TellMeApp).boxStore
 //            val accountBox = box.boxFor(Account::class.java)
 //            val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
 //            Log.d("TAG", list?.toList().toString())
-            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
-            for (item in messageManager.messages)
-                Log.d("TAG", "body: " + item.body + "subject" + item.subject )
+//            val messageManager = OfflineMessageManager(ConnectManager.getConnect())
+//            for (item in messageManager.messages)
+//                Log.d("TAG", "body: " + item.body + "subject" + item.subject )
 //            val intent = Intent(activity, ChatActivity::class.java)
 //            activity.startActivity(intent)
+            val list = MsgDataHelper.getAllChatMsgs(box)
+            for (item in list)
+                Log.d("TAG", item.toString())
         }
 
     val testHomeOnClickListener: View.OnClickListener
@@ -62,5 +66,6 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
             AccountDataHelper.removeAll(boxStore)
             GroupDataHelper.removeAll(boxStore)
             MemberDataHelper.removeAll(boxStore)
+            MsgDataHelper.removeAllMsg(boxStore)
         }
 }

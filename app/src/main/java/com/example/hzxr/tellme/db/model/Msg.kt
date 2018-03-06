@@ -23,4 +23,8 @@ data class Msg(
     override fun type(msgTypeFactory: MsgTypeFactory): Int {
         return msgTypeFactory.type(this)
     }
+
+    override fun toString(): String {
+        return "id: $id type: $type to: $to from: $from content: $content subject: $subject"
+    }
 }

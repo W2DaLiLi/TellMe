@@ -34,6 +34,11 @@ object MsgDataHelper {
         return msgBox.all
     }
 
+    fun removeAllMsg(boxStore: BoxStore) {
+        val msgBox = boxStore.boxFor(Msg::class.java)
+        msgBox.removeAll()
+    }
+
     private fun mapToMsgObject(data: Map<String, String?>): Msg{
         val msg = Msg()
         val current = AccountDataHelper.currentAccount?.username?: return msg
