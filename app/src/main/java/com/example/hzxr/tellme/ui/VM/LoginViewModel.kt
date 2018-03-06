@@ -21,6 +21,7 @@ import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.service.EventService
 import com.example.hzxr.tellme.service.FetchDataIntentService
+import com.example.hzxr.tellme.service.MessageService
 import com.example.hzxr.tellme.ui.HomeActivity
 import org.jivesoftware.smack.XMPPException
 
@@ -109,6 +110,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
                     //todo:goto homeActivity
                     startEventService()
+                    startMessageService()
                     startHomeActivityAndFetchDataService()
                 }
                 2 -> {
@@ -123,12 +125,15 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
         activity.startService(intent)
     }
 
+    private fun startMessageService() {
+        val intent = Intent(activity, MessageService::class.java)
+        activity.startService(intent)
+    }
+
     private fun startHomeActivityAndFetchDataService() {
         val intent = Intent(activity, HomeActivity::class.java)
         activity.startActivity(intent)
-        val name = "$username@localhost"
-        if (name == "@localhost") return
-        FetchDataIntentService.startService(activity, name)
+        FetchDataIntentService.startService(activity, username?: return)
         activity.finish()
     }
 

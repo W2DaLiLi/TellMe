@@ -20,7 +20,7 @@ object MsgDataHelper {
         msgBox.remove(queryMsgByUser(boxStore, username))
     }
 
-    fun queryMsgByUser(boxStore: BoxStore, username: String): List<Msg> {
+    fun queryMsgByUser(boxStore: BoxStore, username: String): List<Msg>? {
         val msgBox = boxStore.boxFor(Msg::class.java)
         return msgBox.query().equal(Msg_.to, username).
                 or().
@@ -46,7 +46,7 @@ object MsgDataHelper {
         msg.from = data["from"] as String
         msg.content = data["content"]
         msg.subject = data["subject"]
-        msg.type = when(current) {
+        msg.type = when("$current@localhost") {
             msg.from -> Constants.MESSAGE_TYPE_SELF_TEXT
             msg.to -> Constants.MESSAGE_TYPE_OTHER_TEXT
             else -> throw Exception("unknown msg type")
