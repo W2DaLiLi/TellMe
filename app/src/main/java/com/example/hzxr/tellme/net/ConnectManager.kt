@@ -9,6 +9,7 @@ import org.jivesoftware.smack.roster.Roster
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 import org.jivesoftware.smackx.iqregister.AccountManager
+import org.jivesoftware.smackx.offline.OfflineMessageManager
 import java.util.logging.Logger
 
 /**
@@ -28,6 +29,8 @@ object ConnectManager {
     private var accountManager: AccountManager? = null
 
     private var chatManager: ChatManager? = null
+
+    private var offlineMessageManager: OfflineMessageManager? = null
 
     private fun initConnection() {
         Log.d("TAG", "initConnection")
@@ -86,6 +89,15 @@ object ConnectManager {
                 chatManager = ChatManager.getInstanceFor(connect)
         }
         return chatManager
+    }
+
+    @Synchronized
+    fun getOfflineMessageManager(): OfflineMessageManager? {
+        if (connect != null) {
+            if (offlineMessageManager == null)
+                offlineMessageManager = OfflineMessageManager(connect)
+        }
+        return offlineMessageManager
     }
 
     fun disConnect() {

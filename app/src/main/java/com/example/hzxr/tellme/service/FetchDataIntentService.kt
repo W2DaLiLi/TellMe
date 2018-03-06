@@ -99,4 +99,8 @@ class FetchDataIntentService : IntentService("FetchData") {
             GroupDataHelper.add(boxStore, data)
         }
     }
+
+    private fun fetchOfflineMsgData(boxStore: BoxStore) {
+
+    }
 }
