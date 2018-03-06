@@ -10,6 +10,8 @@ import io.objectbox.BoxStore
  */
 class TellMeApp : Application() {
 
+    val activityLifecycleCallbacks = ActivityLifecycleCallbacks()
+
     lateinit var boxStore: BoxStore
         private set
 
@@ -17,6 +19,7 @@ class TellMeApp : Application() {
         super.onCreate()
         boxStore = MyObjectBox.builder().androidContext(this).build()
         Fresco.initialize(this)
+        registerActivityLifecycleCallbacks(activityLifecycleCallbacks)
     }
 
 }
