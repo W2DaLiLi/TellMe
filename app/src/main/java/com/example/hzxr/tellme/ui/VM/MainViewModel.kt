@@ -40,7 +40,8 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) : BaseView
 //            val list = accountBox.query().equal(Account_.username, "123").build().findFirst()?.friends
 //            Log.d("TAG", list?.toList().toString())
             val messageManager = OfflineMessageManager(ConnectManager.getConnect())
-            Log.d("TAG", messageManager.messages.toString())
+            for (item in messageManager.messages)
+                Log.d("TAG", "body: " + item.body + "subject" + item.subject )
 //            val intent = Intent(activity, ChatActivity::class.java)
 //            activity.startActivity(intent)
         }

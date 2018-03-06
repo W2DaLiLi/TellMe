@@ -36,6 +36,7 @@ object ConnectManager {
                     .setXmppDomain(SERVER_DOMAIN)
                     .setHost(SERVER_HOST)
                     .setPort(SERVER_PORT)
+                    .setSendPresence(false)
                     .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
                     .build()
             if (connect == null) {
