@@ -58,12 +58,7 @@
           "name": "admin"
         }
       ],
-      "relations": [
-        {
-          "id": "2:2334558400965773056",
-          "name": "members"
-        }
-      ]
+      "relations": []
     },
     {
       "id": "4:4467947529973543554",
@@ -171,6 +166,8 @@
     2442852876338947422,
     573514125144894670
   ],
-  "retiredRelationUids": [],
+  "retiredRelationUids": [
+    2334558400965773056
+  ],
   "version": 1
 }

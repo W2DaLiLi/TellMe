@@ -8,12 +8,15 @@ import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
 import com.example.hzxr.tellme.db.DBUtil.GroupDataHelper
 import com.example.hzxr.tellme.db.DBUtil.MemberDataHelper
+import com.example.hzxr.tellme.db.DBUtil.MsgDataHelper
 import com.example.hzxr.tellme.db.model.Group
 import com.example.hzxr.tellme.db.model.Member
+import com.example.hzxr.tellme.db.model.Msg
 import com.example.hzxr.tellme.net.ConnectManager
 import io.objectbox.BoxStore
 import io.objectbox.relation.RelationInfo
 import io.objectbox.relation.ToMany
+import org.jivesoftware.smack.packet.Presence
 import kotlin.math.log
 
 /**
@@ -31,6 +34,8 @@ class FetchDataIntentService : IntentService("FetchData") {
     override fun onDestroy() {
         super.onDestroy()
         Log.d("TAG", "FetchDataIntentService onDestroy")
+        //在完成所有数据拉取后，设置为登陆上线
+        setOnLine()
     }
 
     companion object {
@@ -47,6 +52,7 @@ class FetchDataIntentService : IntentService("FetchData") {
         fetchAndLoadAccountData(boxStore, username)
         fetchAndLoadGroupData(boxStore)
         fetchAndLoadMembersData(boxStore)
+        fetchAndLoadOfflineMsgData(boxStore)
     }
 
     private fun fetchAndLoadAccountData(boxStore: BoxStore, username: String) {
@@ -100,7 +106,22 @@ class FetchDataIntentService : IntentService("FetchData") {
         }
     }
 
-    private fun fetchOfflineMsgData(boxStore: BoxStore) {
+    private fun fetchAndLoadOfflineMsgData(boxStore: BoxStore) {
+        val offlineMsgManager = ConnectManager.getOfflineMessageManager() ?: return
+        for (item in offlineMsgManager.messages) {
+            val data = mutableMapOf("to" to item.to.toString(),
+                    "from" to item.from.toString(),
+                    "content" to item.body,
+                    "subject" to item.subject,
+                    "type" to item.type.toString())
+            Log.d("TAG", data.toString())
+            MsgDataHelper.add(boxStore, data)
+        }
+        offlineMsgManager.deleteMessages()
+    }
 
+    private fun setOnLine() {
+        val presence = Presence(Presence.Type.available)
+        ConnectManager.getConnect()?.sendStanza(presence)
     }
 }
