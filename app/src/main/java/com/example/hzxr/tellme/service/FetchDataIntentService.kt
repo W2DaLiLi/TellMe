@@ -109,8 +109,8 @@ class FetchDataIntentService : IntentService("FetchData") {
     private fun fetchAndLoadOfflineMsgData(boxStore: BoxStore) {
         val offlineMsgManager = ConnectManager.getOfflineMessageManager() ?: return
         for (item in offlineMsgManager.messages) {
-            val data = mutableMapOf("to" to item.to.toString(),
-                    "from" to item.from.toString(),
+            val data = mutableMapOf("to" to item.to.asBareJid().toString(),
+                    "from" to item.from.asBareJid().toString(),
                     "content" to item.body,
                     "subject" to item.subject,
                     "type" to item.type.toString())

@@ -5,10 +5,12 @@
             name="vm"
             type="com.example.hzxr.tellme.ui.VM.NewMsgImageViewModel"/>
     </data>
-    <merge >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </merge>
+    </FrameLayout>
 </layout>

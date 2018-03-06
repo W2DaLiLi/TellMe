@@ -5,10 +5,12 @@
             name="vm"
             type="com.example.hzxr.tellme.ui.VM.NewMsgNormalViewModel"/>
     </data>
-    <merge>
+    <FrameLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
         <TextView
             android:id="@+id/item_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </merge>
+    </FrameLayout>
 </layout>
