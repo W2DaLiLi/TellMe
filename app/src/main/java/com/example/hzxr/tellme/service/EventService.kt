@@ -3,8 +3,12 @@ package com.example.hzxr.tellme.service
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import android.support.design.widget.Snackbar
 import android.util.Log
+import com.example.hzxr.tellme.TellMeApp
+import com.example.hzxr.tellme.Util.ToastUtil
 import com.example.hzxr.tellme.net.ConnectManager
+import com.example.hzxr.tellme.ui.HomeActivity
 import org.jivesoftware.smack.StanzaListener
 import org.jivesoftware.smack.filter.AndFilter
 import org.jivesoftware.smack.filter.StanzaTypeFilter
@@ -56,10 +60,22 @@ class EventService : Service() {
                 Presence.Type.unavailable -> {
                     //离线
                     Log.d("TAG", fromId.toString() + "离线")
+                    val activity = (application as TellMeApp).activityLifecycleCallbacks.currentActivity()
+                    if (activity == null) {
+                        Log.d("TAG", "isEmpty")
+                        return@StanzaListener
+                    }
+                    ToastUtil.showShort(activity,fromId.toString() + "离线")
                 }
                 Presence.Type.available -> {
                     //上线
                     Log.d("TAG", fromId.toString() + "上线")
+                    val activity = (application as TellMeApp).activityLifecycleCallbacks.currentActivity()
+                    if (activity == null) {
+                        Log.d("TAG", "isEmpty")
+                        return@StanzaListener
+                    }
+                    ToastUtil.showShort(activity,fromId.toString() + "上线")
                 }
                 else -> throw RuntimeException("receive unknown packet")
             }

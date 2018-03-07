@@ -3,7 +3,9 @@ package com.example.hzxr.tellme.service
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.WindowManager
 import com.example.hzxr.tellme.net.ConnectManager
 
 /**
@@ -24,6 +26,11 @@ class MessageService : Service(){
             chatManger.addIncomingListener { from, message, chat ->
                 Log.d("TAG", "Incoming: " + from.toString() + " Message: " + message.toString())
                 chat.send("Hello")
+                val dialog = AlertDialog.Builder(this)
+                        .setTitle("message")
+                        .setMessage("Incoming: " + from.toString() + " Message: " + message.toString())
+                        .create()
+                dialog.window.setType(WindowManager.LayoutParams.TYPE_TOAST)
             }
             chatManger.addOutgoingListener { to, message, chat ->
                 Log.d("TAG", "Outgoing" + to.toString() + " Message " + message.toString())

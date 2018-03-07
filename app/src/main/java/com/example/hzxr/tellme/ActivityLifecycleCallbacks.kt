@@ -5,17 +5,18 @@ import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Hzxr on 2018/3/6.
  */
 class ActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
-    private val activityList = Collections.synchronizedList(mutableListOf<Activity>())
+    private val activityList = ArrayList<Activity>()
 
     override fun onActivityCreated(activity: Activity?, p1: Bundle?) {
         Log.d("TAG", "LifecycleListener: activity onCreate")
-        activityList.add(activity)
+        activityList.add(0, activity ?: return)
     }
 
     override fun onActivityStarted(p0: Activity?) {
