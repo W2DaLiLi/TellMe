@@ -26,4 +26,5 @@
     <color name="loginColorPrimary">#ff5722</color>
     <color name="loginColorPrimaryDark">#c41c00</color>
     <color name="loginColorPrimaryLight">#ff8a50</color>
+    <color name="transparent">#00000000</color>
 </resources>

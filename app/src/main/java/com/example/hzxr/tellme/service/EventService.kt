@@ -1,10 +1,16 @@
 package com.example.hzxr.tellme.service
 
+import android.app.Activity
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.WindowManager
+import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.ToastUtil
 import com.example.hzxr.tellme.net.ConnectManager
@@ -65,7 +71,9 @@ class EventService : Service() {
                         Log.d("TAG", "isEmpty")
                         return@StanzaListener
                     }
-                    ToastUtil.showShort(activity,fromId.toString() + "离线")
+                    activity.runOnUiThread {
+                        ToastUtil.showShort(activity, fromId.toString() + "离线")
+                    }
                 }
                 Presence.Type.available -> {
                     //上线
@@ -75,7 +83,9 @@ class EventService : Service() {
                         Log.d("TAG", "isEmpty")
                         return@StanzaListener
                     }
-                    ToastUtil.showShort(activity,fromId.toString() + "上线")
+                    activity.runOnUiThread {
+                        ToastUtil.showShort(activity, fromId.toString() + "上线")
+                    }
                 }
                 else -> throw RuntimeException("receive unknown packet")
             }
