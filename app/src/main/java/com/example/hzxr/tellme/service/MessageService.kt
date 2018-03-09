@@ -6,6 +6,8 @@ import android.os.IBinder
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.WindowManager
+import com.example.hzxr.tellme.TellMeApp
+import com.example.hzxr.tellme.db.DBUtil.MsgDataHelper
 import com.example.hzxr.tellme.net.ConnectManager
 
 /**
@@ -23,17 +25,10 @@ class MessageService : Service(){
         super.onCreate()
         Log.d("TAG","MessageService onCreate")
         if (chatManger != null) {
-            chatManger.addIncomingListener { from, message, chat ->
+            chatManger.addIncomingListener { from, message, _ ->
                 Log.d("TAG", "Incoming: " + from.toString() + " Message: " + message.toString())
-                chat.send("Hello")
-                val dialog = AlertDialog.Builder(this)
-                        .setTitle("message")
-                        .setMessage("Incoming: " + from.toString() + " Message: " + message.toString())
-                        .create()
-                dialog.window.setType(WindowManager.LayoutParams.TYPE_TOAST)
-            }
-            chatManger.addOutgoingListener { to, message, chat ->
-                Log.d("TAG", "Outgoing" + to.toString() + " Message " + message.toString())
+                val boxStore = (application as TellMeApp).boxStore
+                MsgDataHelper.add(boxStore, message)
             }
         } else
             return
