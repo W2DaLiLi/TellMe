@@ -51,6 +51,7 @@ class ChatViewModel(activity: Activity, binding: ActivityChatBinding,val targetN
             chat.sendMessage(msg.content)
             binding.editMessage.text = null
             MsgDataHelper.add(boxStore, msg)
+            adapter.notifyDataSetChanged()
         }
 
     private fun buildMsg(content: String?): Msg? {

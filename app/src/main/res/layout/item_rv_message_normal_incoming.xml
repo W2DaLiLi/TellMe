@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="vm"
-            type="com.example.hzxr.tellme.ui.VM.NewMsgNormalViewModel"/>
+            type="com.example.hzxr.tellme.ui.VM.NewMsgNormalViewModel" />
     </data>
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/item_message_text"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp">
+
+        <include
+            layout="@layout/item_rv_message_base_incoming"
+            bind:vm="@{vm}" />
+
+        <LinearLayout
+            android:id="@+id/message_container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/send_name"
+            android:layout_toEndOf="@+id/avatar"
+            android:orientation="vertical"
+            tools:ignore="UnknownIdInLayout">
+
+            <TextView
+                android:id="@+id/item_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@{vm.msgText}" />
+        </LinearLayout>
+    </RelativeLayout>
 </layout>

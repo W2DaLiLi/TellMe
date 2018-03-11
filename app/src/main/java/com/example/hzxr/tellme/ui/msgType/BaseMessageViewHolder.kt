@@ -27,10 +27,10 @@ class BaseMessageViewHolder<out B>(val binding: B, val activity: Activity) : Rec
     private fun createMsgViewModel(): NewMsgBaseViewModel {
         return when (binding) {
             is ItemRvMessageNormalIncomingBinding, is ItemRvMessageNormalOutgoingBinding ->
-                    NewMsgNormalViewModel()
+                    NewMsgNormalViewModel(activity, binding)
             is ItemRvMessageImageIncomingBinding, is ItemRvMessageImageOutgoingBinding ->
-                    NewMsgImageViewModel()
-            else -> NewMsgNormalViewModel()
+                    NewMsgImageViewModel(activity, binding)
+            else -> NewMsgNormalViewModel(activity, binding)
         }
     }
 }

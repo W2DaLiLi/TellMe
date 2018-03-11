@@ -2,6 +2,7 @@ package com.example.hzxr.tellme.ui.adapter
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.example.hzxr.tellme.db.model.Msg
@@ -28,6 +29,9 @@ class MessageRecyclerAdapter(private val activity: Activity,
     override fun onBindViewHolder(holder: BaseMessageViewHolder<*>?, position: Int) {
         val msg = msgList[position]
         if (holder == null || msg == null) return
+        holder.viewModel.setMsg(msg)
+        holder.viewModel.notifyChange()
+        holder.binding.executePendingBindings()
     }
 
     override fun getItemCount(): Int {
