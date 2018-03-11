@@ -13,6 +13,7 @@ import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.ui.adapter.MessageRecyclerAdapter
 import com.example.hzxr.tellme.ui.msgType.Constants
 import io.objectbox.android.AndroidScheduler
+import io.objectbox.query.Query
 import io.objectbox.reactive.DataSubscription
 import org.jivesoftware.smack.chat.Chat
 import org.jivesoftware.smack.chat.ChatManager
@@ -47,9 +48,8 @@ class ChatViewModel(activity: Activity, binding: ActivityChatBinding, val target
     init {
         val chatManager = ChatManager.getInstanceFor(ConnectManager.getConnect())
         chat = chatManager.createChat(JidCreate.entityBareFrom(targetName))
-        val msgBox = boxStore.boxFor(Msg::class.java)
-        val msgQuery = msgBox.query().build()
-        subscription = msgQuery.subscribe().on(AndroidScheduler.mainThread()).observer { list ->
+        val msgQuery = MsgDataHelper.getQueryByUser(boxStore, targetName)
+        subscription = msgQuery!!.subscribe().on(AndroidScheduler.mainThread()).observer { list ->
             adapter.msgList = list
             adapter.notifyDataSetChanged()
         }

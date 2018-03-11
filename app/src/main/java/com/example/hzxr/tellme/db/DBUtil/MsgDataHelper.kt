@@ -4,6 +4,7 @@ import com.example.hzxr.tellme.db.model.Msg
 import com.example.hzxr.tellme.db.model.Msg_
 import com.example.hzxr.tellme.ui.msgType.Constants
 import io.objectbox.BoxStore
+import io.objectbox.query.Query
 import org.jivesoftware.smack.packet.Message
 
 /**
@@ -38,6 +39,16 @@ object MsgDataHelper {
                 equal(Msg_.from, username).
                 build().
                 find()
+    }
+
+    fun getQueryByUser(boxStore: BoxStore, username: String): Query<Msg>? {
+        val msgBox = boxStore.boxFor(Msg::class.java)
+        val current = AccountDataHelper.currentAccount?.username?: return null
+        return msgBox.query().
+                contains(Msg_.to, username).
+                or().
+                contains(Msg_.from, username).
+                build()
     }
 
     fun getAllChatMsgs(boxStore: BoxStore): List<Msg> {
