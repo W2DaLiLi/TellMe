@@ -12,6 +12,8 @@ import com.example.hzxr.tellme.db.model.Msg
 import com.example.hzxr.tellme.net.ConnectManager
 import com.example.hzxr.tellme.ui.adapter.MessageRecyclerAdapter
 import com.example.hzxr.tellme.ui.msgType.Constants
+import io.objectbox.android.AndroidScheduler
+import io.objectbox.reactive.DataSubscription
 import org.jivesoftware.smack.chat.Chat
 import org.jivesoftware.smack.chat.ChatManager
 import org.jivesoftware.smack.packet.Message
@@ -22,14 +24,14 @@ import org.jxmpp.jid.util.JidUtil
 /**
  * Created by Hzxr on 2018/2/27.
  */
-class ChatViewModel(activity: Activity, binding: ActivityChatBinding,val targetName: String) : BaseViewModel<ActivityChatBinding>(activity, binding) {
+class ChatViewModel(activity: Activity, binding: ActivityChatBinding, val targetName: String) : BaseViewModel<ActivityChatBinding>(activity, binding) {
 
     private val boxStore = (activity.application as TellMeApp).boxStore
     private val target = MemberDataHelper.queryMemberByName(boxStore, targetName)
 
     private var msgList = MsgDataHelper.queryMsgByUser(boxStore, targetName)
 
-    private val chat : Chat
+    private val chat: Chat
 
 //    private val chatManager = ConnectManager.getChatManager()
 
@@ -40,14 +42,22 @@ class ChatViewModel(activity: Activity, binding: ActivityChatBinding,val targetN
 
     val adapter = MessageRecyclerAdapter(activity, msgList ?: mutableListOf())
 
+    private val subscription: DataSubscription
+
     init {
         val chatManager = ChatManager.getInstanceFor(ConnectManager.getConnect())
         chat = chatManager.createChat(JidCreate.entityBareFrom(targetName))
+        val msgBox = boxStore.boxFor(Msg::class.java)
+        val msgQuery = msgBox.query().build()
+        subscription = msgQuery.subscribe().on(AndroidScheduler.mainThread()).observer { list ->
+            adapter.msgList = list
+            adapter.notifyDataSetChanged()
+        }
     }
 
     val sendMessageOnClickListener: View.OnClickListener
         get() = View.OnClickListener {
-            val msg = buildMsg(binding.editMessage.text.toString())?: return@OnClickListener
+            val msg = buildMsg(binding.editMessage.text.toString()) ?: return@OnClickListener
             chat.sendMessage(msg.content)
             binding.editMessage.text = null
             MsgDataHelper.add(boxStore, msg)
@@ -59,7 +69,7 @@ class ChatViewModel(activity: Activity, binding: ActivityChatBinding,val targetN
         if (content.isNullOrEmpty()) return null
         msg.content = content
         msg.type = Constants.MESSAGE_TYPE_SELF_TEXT
-        msg.from = AccountDataHelper.currentAccount?.username?: return null
+        msg.from = AccountDataHelper.currentAccount?.username ?: return null
         msg.to = targetName
         msg.subject = null
         return msg
@@ -75,6 +85,7 @@ class ChatViewModel(activity: Activity, binding: ActivityChatBinding,val targetN
     }
 
     fun onDestroy() {
-
+        if (!subscription.isCanceled)
+            subscription.cancel()
     }
 }

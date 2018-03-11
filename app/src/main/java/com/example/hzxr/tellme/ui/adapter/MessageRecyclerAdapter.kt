@@ -14,7 +14,7 @@ import com.example.hzxr.tellme.ui.msgType.MsgTypeFactoryImpl
  * Created by Hzxr on 2018/3/2.
  */
 class MessageRecyclerAdapter(private val activity: Activity,
-                             private val msgList: List<Msg>) : RecyclerView.Adapter<BaseMessageViewHolder<*>?>() {
+                             var msgList: List<Msg>) : RecyclerView.Adapter<BaseMessageViewHolder<*>?>() {
 
     var msgTypeFactory: MsgTypeFactory
 
