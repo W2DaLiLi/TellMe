@@ -34,7 +34,8 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginBottom="?attr/actionBarSize"
             app:layoutManager="LinearLayoutManager"
-            bind:adapter="@{vm.adapter}" />
+            bind:adapter="@{vm.adapter}"
+            app:stackFromEnd="true"/>
 
         <LinearLayout
             android:id="@+id/bottom_bar"
