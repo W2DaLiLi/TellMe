@@ -18,17 +18,20 @@
             android:id="@+id/message_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/avatar"
+            android:layout_toStartOf="@+id/avatar"
             android:layout_below="@+id/send_name"
             android:orientation="vertical"
             tools:ignore="UnknownIdInLayout">
             <TextView
                 android:id="@+id/item_message_text"
                 android:text="@{vm.msgText}"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:background="@drawable/ic_bubble_outgoing_bulge"/>
         </LinearLayout>
     </RelativeLayout>
 </layout>

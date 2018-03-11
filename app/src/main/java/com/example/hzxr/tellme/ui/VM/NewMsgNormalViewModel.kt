@@ -9,5 +9,8 @@ import android.util.Log
  */
 class NewMsgNormalViewModel(activity: Activity, binding: ViewDataBinding) : NewMsgBaseViewModel(activity, binding) {
 
-    val msgText = msg.content
+    //按照原来的方法拿一直都是空数据，目前先这样，后期再优化
+    val msgText : String by lazy {
+        msg.content?: ""
+    }
 }
