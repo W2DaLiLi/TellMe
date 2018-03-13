@@ -43,7 +43,6 @@ object MsgDataHelper {
 
     fun getQueryByUser(boxStore: BoxStore, username: String): Query<Msg>? {
         val msgBox = boxStore.boxFor(Msg::class.java)
-        val current = AccountDataHelper.currentAccount?.username?: return null
         return msgBox.query().
                 contains(Msg_.to, username).
                 or().
