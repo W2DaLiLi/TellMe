@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.TellMeApp
+import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityLoginBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
@@ -133,8 +134,11 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     private fun startHomeActivityAndFetchDataService() {
         val intent = Intent(activity, HomeActivity::class.java)
         activity.startActivity(intent)
-        FetchDataIntentService.startService(activity, username?: return)
+        FetchDataIntentService.startService(activity, username ?: return)
         activity.finish()
     }
+
+    val debugEnter: View.OnClickListener
+        get() = View.OnClickListener { ActivitysUtil.startActivityToMainDebug(activity) }
 
 }

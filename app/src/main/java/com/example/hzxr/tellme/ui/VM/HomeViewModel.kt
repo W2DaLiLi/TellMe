@@ -42,6 +42,9 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
                 R.id.navigation_settings -> {
                     Log.d("TAG", "navigation settings")
                 }
+                R.id.navigation_debug -> {
+                    ActivitysUtil.startActivityToMainDebug(activity)
+                }
             }
             true
         }

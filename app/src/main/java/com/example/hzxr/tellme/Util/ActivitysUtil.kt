@@ -45,4 +45,9 @@ object ActivitysUtil {
         intent.putExtra("targetId", targetName)
         context.startActivity(intent)
     }
+
+    fun startActivityToMainDebug(context: Context) {
+        val intent = Intent(context, MainActivity::class.java)
+        context.startActivity(intent)
+    }
 }
