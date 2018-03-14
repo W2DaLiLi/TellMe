@@ -23,7 +23,8 @@ class MemberRecyclerAdapter(private val context: Context) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
-        holder.bind(members[position].username)
+        val temp = members[position]
+        holder.bind(temp.nickname?: temp.username)
         holder.itemView.setOnClickListener {
             onItemOnClickListener?.invoke(position)
         }
