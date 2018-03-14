@@ -34,8 +34,9 @@ object ActivitysUtil {
         context.startActivity(intent)
     }
 
-    fun startActivityToSetFriend(context: Context) {
+    fun startActivityToSetFriend(context: Context, targetName: String) {
         val intent = Intent(context, SetFriendActivity::class.java)
+        intent.putExtra("targetName", targetName)
         context.startActivity(intent)
     }
 

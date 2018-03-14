@@ -65,45 +65,9 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
         Log.d("TAG", userList.toString())
         //这里这样拿值感觉会重复引用有问题，标注一下
         adapter.onItemClickListener = { position ->
-            //todo:alterDialog
-//            val list = adapter.userList
-//            val name = list[position].username
-//            AlertDialog.Builder(activity).setTitle("好友添加提示")
-//                    .setMessage("是否添加 " + name + "为好友？")
-//                    .setPositiveButton("确定", { _, _ ->
-//                        submitAddFriend(name)
-//                    })
-//                    .setNegativeButton("取消", null)
-//                    .create()
-//                    .show()
-
-            ActivitysUtil.startActivityToSetFriend(activity)
+            val list = adapter.userList
+            ActivitysUtil.startActivityToSetFriend(activity, list[position].username)
         }
     }
 
-    private fun submitAddFriend(name: String) {
-        Log.d("TAG", "the name: " + name)
-        Thread {
-            val roster = Roster.getInstanceFor(ConnectManager.getConnect())
-            val jid = JidCreate.bareFrom(name + "@localhost")
-            try {
-                roster.createEntry(jid, null, arrayOf("friend"))
-                handler.sendEmptyMessage(1)
-            } catch (e: XMPPException) {
-                e.printStackTrace()
-                handler.sendEmptyMessage(2)
-            }
-        }.start()
-    }
-
-    @SuppressLint("HandlerLeak")
-    private val handler = object : Handler(){
-        override fun handleMessage(msg: Message?) {
-            when(msg?.what) {
-                1 -> ToastUtil.showShort(activity, "添加成功")
-                2 -> ToastUtil.showShort(activity, "添加失败")
-            }
-            activity.finish()
-        }
-    }
 }

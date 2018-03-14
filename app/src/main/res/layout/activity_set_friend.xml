@@ -51,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="SetNickName"
+                android:text="@{vm.nickname}"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"/>
 
@@ -80,6 +81,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:id="@+id/group_name_et"
+                android:text="@{vm.teamName}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="SetGroup" />

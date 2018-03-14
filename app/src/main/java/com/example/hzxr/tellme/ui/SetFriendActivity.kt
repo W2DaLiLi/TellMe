@@ -15,7 +15,8 @@ class SetFriendActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivitySetFriendBinding>(this, R.layout.activity_set_friend)
-        val viewModel = SetFriendViewModel(this, binding)
+        val targetName = intent.getStringExtra("targetName")
+        val viewModel = SetFriendViewModel(this, binding, targetName)
         binding.vm = viewModel
     }
 }
