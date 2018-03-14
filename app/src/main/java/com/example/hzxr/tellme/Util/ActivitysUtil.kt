@@ -34,6 +34,11 @@ object ActivitysUtil {
         context.startActivity(intent)
     }
 
+    fun startActivityToSetFriend(context: Context) {
+        val intent = Intent(context, SetFriendActivity::class.java)
+        context.startActivity(intent)
+    }
+
     fun startActivityToChatWithId(context: Context, targetName: String) {
         val intent = Intent(context, ChatActivity::class.java)
         intent.putExtra("targetId", targetName)

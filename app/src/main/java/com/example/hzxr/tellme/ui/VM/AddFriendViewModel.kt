@@ -11,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import com.example.hzxr.tellme.Util.ActivitysUtil
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.Util.ToastUtil
 import com.example.hzxr.tellme.databinding.ActivityAddFriendBinding
@@ -65,16 +66,18 @@ class AddFriendViewModel(activity: Activity, binding: ActivityAddFriendBinding) 
         //这里这样拿值感觉会重复引用有问题，标注一下
         adapter.onItemClickListener = { position ->
             //todo:alterDialog
-            val list = adapter.userList
-            val name = list[position].username
-            AlertDialog.Builder(activity).setTitle("好友添加提示")
-                    .setMessage("是否添加 " + name + "为好友？")
-                    .setPositiveButton("确定", { _, _ ->
-                        submitAddFriend(name)
-                    })
-                    .setNegativeButton("取消", null)
-                    .create()
-                    .show()
+//            val list = adapter.userList
+//            val name = list[position].username
+//            AlertDialog.Builder(activity).setTitle("好友添加提示")
+//                    .setMessage("是否添加 " + name + "为好友？")
+//                    .setPositiveButton("确定", { _, _ ->
+//                        submitAddFriend(name)
+//                    })
+//                    .setNegativeButton("取消", null)
+//                    .create()
+//                    .show()
+
+            ActivitysUtil.startActivityToSetFriend(activity)
         }
     }
 

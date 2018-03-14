@@ -32,6 +32,8 @@
             android:theme="@style/HomeActivity"/>
         <activity android:name=".ui.ChatActivity"
             android:theme="@style/HomeActivity"/>
+        <activity android:name=".ui.SetFriendActivity"
+            android:theme="@style/HomeActivity"/>
         <service android:name=".service.EventService"/>
         <service android:name=".service.FetchDataIntentService"/>
         <service android:name=".service.MessageService"/>
