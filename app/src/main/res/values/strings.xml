@@ -25,6 +25,8 @@
     <string name="search_friend">Search Friend</string>
     <string name="send">Send</string>
     <string name="setNickname">为好友设置昵称</string>
+    <string name="setGroup">设置群组</string>
+    <string name="submit">Submit</string>
 
     <string name="clean_db">Clean DB</string>
 </resources>

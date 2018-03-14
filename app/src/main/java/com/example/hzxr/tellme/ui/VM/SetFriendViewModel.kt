@@ -13,12 +13,14 @@ class SetFriendViewModel(activity: Activity, binding: ActivitySetFriendBinding) 
     private val TAG = "SetFriendViewModel"
 
     init {
-        binding.toolbar.setNavigationOnClickListener { }
+
     }
 
     val navigationOnClickListener: View.OnClickListener
-        get() = View.OnClickListener {
-            Log.d(TAG, "navigationOnClickListener")
-        }
+        get() = View.OnClickListener { activity.onBackPressed() }
 
+    val submitOnClickListener: View.OnClickListener
+        get() = View.OnClickListener {
+            Log.d(TAG, "submit")
+        }
 }

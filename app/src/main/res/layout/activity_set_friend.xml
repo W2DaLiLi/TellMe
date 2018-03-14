@@ -22,6 +22,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/add_friend"
                 bind:navigationContentDescription="back"
+                bind:navigationIcon="@mipmap/icon_back"
                 bind:setNavigationOnClickListener="@{vm.navigationOnClickListener}"/>
         </android.support.design.widget.AppBarLayout>
 
@@ -49,8 +50,63 @@
                 android:id="@+id/nickname_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="SetNickName" />
+                android:hint="SetNickName"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="184dp"
+            android:background="@color/jet"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintHorizontal_bias="0.0"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/setGroup"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/group_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="SetGroup" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/jet"
+            android:gravity="end"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintHorizontal_bias="0.0"
+            bind:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/submit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:onClick="@{vm.submitOnClickListener}"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
 
 
