@@ -141,4 +141,6 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     val debugEnter: View.OnClickListener
         get() = View.OnClickListener { ActivitysUtil.startActivityToMainDebug(activity) }
 
+    val registerEnter: View.OnClickListener
+        get() = View.OnClickListener { ActivitysUtil.startActivityToRegister(activity) }
 }
