@@ -40,6 +40,10 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     var usernameInputError: String? = null
     var passwordInputError: String? = null
 
+    init {
+        if (autoLogin == true)
+    }
+
     val usernameTextWatcher: TextWatcher
         get() = object : TextWatcherHelper() {
             override fun afterTextChanged(s: Editable?) {
