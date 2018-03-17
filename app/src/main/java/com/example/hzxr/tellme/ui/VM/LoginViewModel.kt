@@ -41,7 +41,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     var passwordInputError: String? = null
 
     init {
-        if (autoLogin == true)
+        if (autoLogin == true){}
     }
 
     val usernameTextWatcher: TextWatcher
