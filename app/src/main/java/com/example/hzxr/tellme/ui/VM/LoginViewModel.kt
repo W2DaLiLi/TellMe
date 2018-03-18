@@ -110,7 +110,10 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
             try {
                 val connect = ConnectManager.getConnect() ?: return@Thread
                 connect.login(username, password)
-                handler.sendEmptyMessage(1)
+                val message = Message()
+                message.what = 1
+                message.obj = mutableMapOf("username" to username, "password" to password)
+                handler.sendMessage(message)
             } catch (e: XMPPException) {
                 Log.d("TAG", e.toString())
                 handler.sendEmptyMessage(2)
@@ -125,11 +128,14 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                 1 -> {
                     Toast.makeText(activity, "登陆成功", Toast.LENGTH_SHORT).show()
                     //todo:goto homeActivity
+                    val data = msg.obj as MutableMap<String, String>
+                    val name = data["username"]?: return
+                    val pw = data["password"]?: return
                     startEventService()
                     startMessageService()
-                    startHomeActivityAndFetchDataService()
-                    if (autoLogin == true){
-                        SharePreferencesManager.saveAccountInfo(activity, username?: return, password?: return)
+                    startHomeActivityAndFetchDataService(name)
+                    if (autoLogin == true && !SharePreferencesManager.hasUserInfo(activity)){
+                        SharePreferencesManager.saveAccountInfo(activity, name, pw)
                     }
                 }
                 2 -> {
@@ -149,10 +155,10 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
         activity.startService(intent)
     }
 
-    private fun startHomeActivityAndFetchDataService() {
+    private fun startHomeActivityAndFetchDataService(username: String) {
         val intent = Intent(activity, HomeActivity::class.java)
         activity.startActivity(intent)
-        FetchDataIntentService.startService(activity, username ?: return)
+        FetchDataIntentService.startService(activity, username)
         activity.finish()
     }
 

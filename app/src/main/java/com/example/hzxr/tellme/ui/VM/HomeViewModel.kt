@@ -49,7 +49,7 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
                 R.id.navigation_cancel -> {
                     ConnectManager.getConnect()?.instantShutdown()
                     ConnectManager.disConnect()
-                    SharePreferencesManager.remvoeInfo(activity)
+                    SharePreferencesManager.removeInfo(activity)
                     ActivitysUtil.startActivityToLogin(activity)
                     activity.finish()
                 }

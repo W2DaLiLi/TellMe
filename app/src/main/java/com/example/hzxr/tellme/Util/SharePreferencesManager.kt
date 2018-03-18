@@ -31,7 +31,7 @@ object SharePreferencesManager {
         return false
     }
 
-    fun remvoeInfo(context: Context) {
+    fun removeInfo(context: Context) {
         val sp = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE)
         val editor = sp.edit()
         editor.clear()
