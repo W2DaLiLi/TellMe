@@ -9,7 +9,7 @@ import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
  */
 object SharePreferencesManager {
 
-    fun saveAccoutInfo(context: Context, username: String, password: String) {
+    fun saveAccountInfo(context: Context, username: String, password: String) {
         val sp = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE)
         val editor = sp.edit()
         editor.putString("USERNAME", username)
@@ -29,5 +29,12 @@ object SharePreferencesManager {
                 return true
         }
         return false
+    }
+
+    fun remvoeInfo(context: Context) {
+        val sp = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        editor.clear()
+        editor.apply()
     }
 }

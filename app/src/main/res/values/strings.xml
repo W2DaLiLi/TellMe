@@ -27,6 +27,7 @@
     <string name="setNickname">为好友设置昵称</string>
     <string name="setGroup">设置群组</string>
     <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
 
     <string name="clean_db">Clean DB</string>
 </resources>

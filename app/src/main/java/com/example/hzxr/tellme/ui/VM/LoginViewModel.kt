@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.TellMeApp
 import com.example.hzxr.tellme.Util.ActivitysUtil
+import com.example.hzxr.tellme.Util.SharePreferencesManager
 import com.example.hzxr.tellme.Util.TextWatcherHelper
 import com.example.hzxr.tellme.databinding.ActivityLoginBinding
 import com.example.hzxr.tellme.db.DBUtil.AccountDataHelper
@@ -41,7 +42,14 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     var passwordInputError: String? = null
 
     init {
-        if (autoLogin == true){}
+        if(SharePreferencesManager.hasUserInfo(activity)){
+            val userInfo = SharePreferencesManager.getUserInfo(activity)
+            val name = userInfo["username"]
+            val pw = userInfo["password"]
+            if (name != null && pw != null){
+                login(name, pw)
+            }
+        }
     }
 
     val usernameTextWatcher: TextWatcher
@@ -76,14 +84,18 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
     val passwordOnEditorActionListener: TextView.OnEditorActionListener
         get() = TextView.OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                login()
+                if (!checkValid()) return@OnEditorActionListener false
+                login(username?: return@OnEditorActionListener false, password?: return@OnEditorActionListener false)
                 return@OnEditorActionListener true
             }
             false
         }
 
     val onLoginButtonClickListener: View.OnClickListener
-        get() = View.OnClickListener { login() }
+        get() = View.OnClickListener {
+            if (!checkValid()) return@OnClickListener
+            login(username?: return@OnClickListener, password?: return@OnClickListener)
+        }
 
     private fun checkValid(): Boolean {
         usernameInputError = if (TextUtils.isEmpty(username)) activity.getString(R.string.errorUsername) else null
@@ -92,8 +104,7 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
         return null == usernameInputError && null == passwordInputError
     }
 
-    private fun login() {
-        if (!checkValid()) return
+    private fun login(username: String, password: String) {
         Log.d("TAG", "username:" + username + " password:" + password + " remember:" + rememberPW + " auto:" + autoLogin)
         Thread {
             try {
@@ -117,6 +128,9 @@ class LoginViewModel(activity: Activity, binding: ActivityLoginBinding) : BaseVi
                     startEventService()
                     startMessageService()
                     startHomeActivityAndFetchDataService()
+                    if (autoLogin == true){
+                        SharePreferencesManager.saveAccountInfo(activity, username?: return, password?: return)
+                    }
                 }
                 2 -> {
                     Toast.makeText(activity, "登陆失败", Toast.LENGTH_SHORT).show()

@@ -7,6 +7,7 @@ import android.util.Log
 
 import com.example.hzxr.tellme.R
 import com.example.hzxr.tellme.Util.ActivitysUtil
+import com.example.hzxr.tellme.Util.SharePreferencesManager
 import com.example.hzxr.tellme.databinding.ActivityHomeBinding
 import com.example.hzxr.tellme.net.ConnectManager
 import io.objectbox.BoxStore
@@ -44,6 +45,13 @@ class HomeViewModel(activity: Activity, binding: ActivityHomeBinding) : BaseView
                 }
                 R.id.navigation_debug -> {
                     ActivitysUtil.startActivityToMainDebug(activity)
+                }
+                R.id.navigation_cancel -> {
+                    ConnectManager.getConnect()?.instantShutdown()
+                    ConnectManager.disConnect()
+                    SharePreferencesManager.remvoeInfo(activity)
+                    ActivitysUtil.startActivityToLogin(activity)
+                    activity.finish()
                 }
             }
             true

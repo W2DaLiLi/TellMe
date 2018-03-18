@@ -18,6 +18,10 @@
                 android:id="@+id/navigation_debug"
                 android:icon="@mipmap/icon_debug"
                 android:title="@string/test_debug"/>
+            <item
+                android:id="@+id/navigation_cancel"
+                android:icon="@mipmap/ic_cancel"
+                android:title="@string/cancel"/>
         </menu>
     </item>
 
